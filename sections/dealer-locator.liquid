@@ -1,0 +1,744 @@
+<section class="dealer-locator">
+
+  <div class="dealer-filters">
+
+    <button class="loc-btn" id="useLocation">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M11 1C11 0.44772 10.5523 0 10 0C9.4477 0 9 0.44772 9 1V2.06189C5.38128 2.51314 2.51314 5.38128 2.06189 9H1C0.44772 9 0 9.4477 0 10C0 10.5523 0.44772 11 1 11H2.06189C2.51314 14.6187 5.38128 17.4869 9 17.9381V19C9 19.5523 9.4477 20 10 20C10.5523 20 11 19.5523 11 19V17.9381C14.6187 17.4869 17.4869 14.6187 17.9381 11H19C19.5523 11 20 10.5523 20 10C20 9.4477 19.5523 9 19 9H17.9381C17.4869 5.38128 14.6187 2.51314 11 2.06189V1ZM8 10C8 8.8954 8.8954 8 10 8C11.1046 8 12 8.8954 12 10C12 11.1046 11.1046 12 10 12C8.8954 12 8 11.1046 8 10ZM10 6C7.79086 6 6 7.79086 6 10C6 12.2091 7.79086 14 10 14C12.2091 14 14 12.2091 14 10C14 7.79086 12.2091 6 10 6Z" fill="#204499"/>
+      </svg>
+    </button>
+
+    <div class="search-box">
+      <input id="searchBox" placeholder="Search by City, State or Pincode" />
+      <span>
+        <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <mask id="mask0_1206_3206" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+          <rect width="20" height="20" fill="#D9D9D9"/>
+          </mask>
+          <g mask="url(#mask0_1206_3206)">
+          <path d="M16.3333 17.5L11.0833 12.25C10.6667 12.5833 10.1875 12.8472 9.64583 13.0417C9.10417 13.2361 8.52778 13.3333 7.91667 13.3333C6.40278 13.3333 5.12153 12.809 4.07292 11.7604C3.02431 10.7118 2.5 9.43056 2.5 7.91667C2.5 6.40278 3.02431 5.12153 4.07292 4.07292C5.12153 3.02431 6.40278 2.5 7.91667 2.5C9.43056 2.5 10.7118 3.02431 11.7604 4.07292C12.809 5.12153 13.3333 6.40278 13.3333 7.91667C13.3333 8.52778 13.2361 9.10417 13.0417 9.64583C12.8472 10.1875 12.5833 10.6667 12.25 11.0833L17.5 16.3333L16.3333 17.5ZM7.91667 11.6667C8.95833 11.6667 9.84375 11.3021 10.5729 10.5729C11.3021 9.84375 11.6667 8.95833 11.6667 7.91667C11.6667 6.875 11.3021 5.98958 10.5729 5.26042C9.84375 4.53125 8.95833 4.16667 7.91667 4.16667C6.875 4.16667 5.98958 4.53125 5.26042 5.26042C4.53125 5.98958 4.16667 6.875 4.16667 7.91667C4.16667 8.95833 4.53125 9.84375 5.26042 10.5729C5.98958 11.3021 6.875 11.6667 7.91667 11.6667Z" fill="white"/>
+          </g>
+        </svg>
+
+      </span>
+
+    </div>
+
+    <select class="drop-select" id="zoneFilter">
+      <option value="">All Zones</option>
+    </select>
+
+    <select class="drop-select" id="stateFilter">
+      <option value="">State</option>
+    </select>
+
+    <select class="drop-select" id="cityFilter">
+      <option value="">City</option>
+    </select>
+
+    <button class="type-btn" data-type="Distributor">Distributor</button>
+    <button class="type-btn" data-type="Store">Store</button>
+
+    <button id="resetBtn" class="reset-btn">
+      <img src="https://img.icons8.com/material-sharp/50/recurring-appointment.png" alt="recurring-appointment" style="width:18px;height:18px">
+    </button>
+  </div>
+
+  <div id="cards" class="dealer-cards"></div>
+
+</section>
+
+
+<style>
+.dealer-locator {
+  border-radius: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+  background:white;
+  margin:20px;
+  height:80vh;
+  overflow:hidden;
+  overflow-y:scroll;
+  position:relative;
+}
+
+.dealer-filters {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  background: #fff;
+  padding: 14px;
+  border-radius: 18px;
+  width:100%;
+  position:sticky;
+  top:0;
+  z-index:1
+}
+
+.loc-btn {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: #f7f7f7;
+  cursor: pointer;
+  width:45px;
+  height:45px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 45px;
+  justify-content: space-between;
+  opacity: 1;
+  border-radius: 8px;
+  border: 1px solid #E2E2E2;
+  overflow:hidden;
+  width:40%;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+
+
+}
+.search-box span {
+  height: 45px;
+  width:45px;
+  background:#0A1429;
+  display:flex;
+  justify-content:center;
+  align-items:center
+
+}
+
+.search-box input {
+  border: none;
+  outline: none;
+  width: 100%;
+  padding-left:10px;
+  font-family: Helvetica;
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 100%;
+}
+.search-box input::placeholder {
+  color:#ABB7C2
+}
+
+.drop-select {
+  padding: 10px 14px;
+  border-radius: 14px;
+  width:12%;
+  height: 45px;
+  justify-content: space-between;
+  opacity: 1;
+  border-radius: 8px;
+  border: 1px solid #E2E2E2;
+  overflow:hidden;
+  outline: none;
+ 
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+
+}
+
+
+
+.type-btn {
+  border-radius: 12px;
+  border: none;
+  background: transparent;
+  height:45px;
+  cursor: pointer;
+  background: #E2E2E2;
+  width:90px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+
+}
+
+.type-btn.active {
+  background: #0b1c3f;
+  color: #fff;
+}
+
+.reset-btn {
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: white;
+  cursor: pointer;
+  width:45px;
+  height:45px;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  box-shadow: 0 4px 20px rgba(0,0,0,.06);
+
+}
+
+.storeCardWrapper{
+  display:flex;
+  flex-direction:column;
+  width:100%
+}
+.mapDiv{
+  width:97%;
+  overflow:hidden;
+  border-radius:30px;
+  margin:20px
+}
+.dealer-cards {
+  display: flex;
+  flex-wrap:wrap;
+  gap: 18px;
+  width:100%;
+  padding: 0 20px;
+  justify-content: start;
+
+}
+
+.dealer-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 18px;
+  border-radius: 16px;
+  border: 1px solid #e3e3e3;
+  background: #fff;
+  transition: .25s;
+  box-shadow: 0 5px 10px rgba(0,0,0,.08);
+  width:32.2%
+}
+.dealer-card.Store {
+  width:49%
+}
+@media(max-width:1100px){
+  .dealer-card{width:31%}
+
+  .search-box {width:50%}
+  .mapDiv{width:96%}
+}
+@media(max-width:900px){
+  .dealer-card{width:48%}
+  .search-box {width:90%}
+  .drop-select{ width:18%}
+  .dealer-card.Store {
+    width:100%
+  }
+  .mapDiv{width:94%}
+
+
+}
+@media(max-width:480px){
+  .dealer-card{width:100%}
+  .search-box {width:80%}
+  .drop-select{ width:30%}
+  .type-btn{width:40%}
+  .mapDiv{width:90%}
+
+}
+.dealer-card:hover {
+  background: #f2f2f2;
+  transform: translateY(-2px);
+}
+
+.dealer-card h3 {
+  font-size: 16px;
+  margin-bottom: 6px;
+  font-weight:bold;
+}
+
+.address {
+  font-size: 13px;
+  color: #777;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  min-height: calc(1.4em * 3);
+}
+
+.phone {
+  font-weight: 500;
+  color: #204499;
+}
+
+</style>
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key={{ section.settings.google_api_key }}"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", async () => {
+
+  /* ---------------- ELEMENTS ---------------- */
+  const fileUrl     = "{{ section.settings.file_url }}";
+  const apiKey      = "{{ section.settings.google_api_key }}";
+
+  const zoneFilter  = document.getElementById("zoneFilter");
+  const stateFilter = document.getElementById("stateFilter");
+  const cityFilter  = document.getElementById("cityFilter");
+  const searchBox   = document.getElementById("searchBox");
+  const cards       = document.getElementById("cards");
+  const resetBtn    = document.getElementById("resetBtn");
+  const useLocationBtn = document.getElementById("useLocation");
+
+  let ALL_ITEMS = [];
+  let selectedType = "Distributor";
+
+  /* ---------------- STATIC STORES ---------------- */
+  const STORES = [
+    {
+      type: "Store",
+      zone: "WEST",
+      state: "Gujarat",
+      city: "Vadodara",
+      name: "Yera International Shreno ltd",
+      address: "Glass Division, Alembic Rd, BIDC Gorwa Estate, Gorwa, Vadodara, Gujarat 390003",
+      phone: "9876543210",
+      lat: 22.3072,
+      lng: 73.1812
+    },
+    {
+      type: "Store",
+      zone: "SOUTH",
+      state: "Karnataka",
+      city: "Bengaluru",
+      name: "YERA FACTORY OUTLET",
+      address: "XQQ3+3PP, Maithri Layout, Kadugodi, Bengaluru, Karnataka 560066",
+      phone: "9123456789",
+      lat: 12.9716,
+      lng: 77.5946
+    }
+  ];
+
+
+  /* ---------------- HELPERS ---------------- */
+  const title = s => s.toLowerCase().replace(/\b\w/g, c => c.toUpperCase());
+  const norm  = s => (s || "").toLowerCase().trim();
+  const pin   = a => (a.match(/\b\d{6}\b/) || [""])[0];
+
+  const normalizeState = s =>
+    (s || "").toUpperCase().replace(/\s+/g,"").replace("&","AND");
+
+  const STATE_ALIASES = {
+    MAHARASHTRA:["MAHARASTRA"],
+    WESTBENGAL:["WEST BANGAL"],
+    CHANDIGARH:["CHANDIGADH"],
+    ODISHA:["ORISSA"]
+  };
+
+  /* ---------------- LOAD EXCEL ---------------- */
+  async function loadExcel(url){
+    const res = await fetch(url);
+    const buf = await res.arrayBuffer();
+    const wb  = XLSX.read(buf,{type:"array"});
+    const sh  = wb.Sheets[wb.SheetNames[0]];
+    const rows= XLSX.utils.sheet_to_json(sh,{defval:""});
+
+    return rows.map(r=>({
+      type:"Distributor",
+      zone:r.Zone.trim(),
+      state:r.State.trim(),
+      city:r.Location.trim(),
+      name:r["Distributor Name"].trim(),
+      address:r.Address.trim(),
+      phone:r["Contact Number"].toString().trim()
+    })).filter(d=>d.name && d.state);
+  }
+
+  /* ---------------- RENDER ---------------- */
+  function render(list){
+    // Clear previous content
+    cards.innerHTML = list.length ? "" : "<p>No results found</p>";
+
+    // Remove old type classes and add current one
+    cards.classList.remove("Distributor", "Store");
+    cards.classList.add(selectedType);
+
+    // Remove any existing store wrapper if switching from Store → Distributor
+    if(selectedType !== 'Store'){
+      const wrapper = document.querySelector('.storeCardWrapper');
+      if(wrapper){
+        wrapper.parentNode.insertBefore(cards, wrapper);
+        wrapper.remove();
+      }
+    }
+
+    // Add dealer cards
+    list.forEach(d=>{
+      const cardHTML = `
+        <div class="dealer-card ${selectedType}">
+          <div>
+            <h3>${title(d.name)}</h3>
+            <div class="address">${title(d.address)}</div>
+          </div>
+          ${d.phone ? `<div class="phone"><span style="margin-right: 10px;">📞</span> ${d.phone}</div>` : ""}
+        </div>`;
+      cards.innerHTML += cardHTML;
+    });
+    if(selectedType === 'Store'){
+      document.querySelectorAll('.dealer-card.Store').forEach((card, idx)=>{
+        card.onclick = () => {
+          const s = ALL_ITEMS.filter(d=>d.type==='Store' && (
+            (!zoneFilter.value || d.zone === zoneFilter.value) &&
+            (!stateFilter.value || d.state === stateFilter.value) &&
+            (!cityFilter.value  || d.city  === cityFilter.value)
+          ))[idx];
+
+          if(s && s.lat && s.lng && mapInstance){
+            mapInstance.setZoom(12);
+            mapInstance.panTo({lat: parseFloat(s.lat), lng: parseFloat(s.lng)});
+          }
+        }
+      });
+    }
+
+
+    // Only for Stores: dynamically wrap #cards and add mapDiv
+    if(selectedType === 'Store' && !document.querySelector('.storeCardWrapper')){
+      const wrapper = document.createElement('div');
+      wrapper.className = 'storeCardWrapper';
+      wrapper.style.display = 'flex';
+
+      const mapDiv = document.createElement('div');
+      mapDiv.className = 'mapDiv';
+      mapDiv.style.height = '480px';
+
+      // Insert wrapper before #cards, move #cards inside, then append mapDiv
+      cards.parentNode.insertBefore(wrapper, cards);
+      wrapper.appendChild(cards);
+      wrapper.appendChild(mapDiv);
+
+      // Initialize map with store pins
+      initStoreMap(list, mapDiv);
+    }
+  }
+  async function fetchLatLng(address) {
+    const res = await fetch(
+      `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(address)}&key=${apiKey}`
+    );
+    const data = await res.json();
+    if(data.results && data.results.length){
+      return {
+        lat: data.results[0].geometry.location.lat,
+        lng: data.results[0].geometry.location.lng
+      };
+    }
+    return null;
+  }
+
+  let mapInstance, markers = [];
+
+  async function initStoreMap(stores, container){
+    if(!stores.length) return;
+
+    // Fetch lat/lng for stores without them
+    for(const s of stores){
+      if(!s.lat || !s.lng){
+        const coords = await fetchLatLng(s.address);
+        if(coords){
+          s.lat = coords.lat;
+          s.lng = coords.lng;
+        }
+      }
+    }
+
+    // Filter valid stores
+    const validStores = stores.filter(s => s.lat && s.lng);
+    if(!validStores.length) return;
+
+    // Center map on first store
+    mapInstance = new google.maps.Map(container, {
+      zoom: 5,
+      center: { lat: parseFloat(validStores[0].lat), lng: parseFloat(validStores[0].lng) }
+    });
+
+    // Clear previous markers
+    markers.forEach(m => m.setMap(null));
+    markers = [];
+
+  validStores.forEach(s => {
+  const marker = new google.maps.Marker({
+    position: { lat: parseFloat(s.lat), lng: parseFloat(s.lng) },
+    map: mapInstance,
+    title: s.name
+  });
+
+  const directionsLink = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(s.address)}`;
+
+  const infowindow = new google.maps.InfoWindow({
+    content: `
+      <div style="
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        line-height: 1.4;
+        max-width: 250px;
+      ">
+        <strong style="font-size: 16px; color: #0b1c3f;">${s.name}</strong><br>
+        <span style="color: #555;">${s.address}</span><br>
+        <a href="${directionsLink}" target="_blank" 
+           style="
+             display: inline-block;
+             margin-top: 6px;
+             margin-bottom: 12px;
+             padding: 6px 12px;
+             background-color: #007bff;
+             color: white;
+             text-decoration: none;
+             border-radius: 6px;
+             font-weight: bold;
+           ">
+          Get Directions
+        </a>
+      </div>
+    `
+  });
+
+  marker.addListener("click", () => {
+    // Zoom in and center the map
+    mapInstance.setZoom(12);
+    mapInstance.panTo(marker.getPosition());
+
+    // Open info window
+    infowindow.open(mapInstance, marker);
+  });
+
+  markers.push(marker);
+});
+
+  }
+
+
+
+  /* ---------------- FILTER LOGIC ---------------- */
+  function apply(){
+    const s = norm(searchBox.value);
+
+    render(
+      ALL_ITEMS.filter(d =>
+        d.type === selectedType &&
+        (!zoneFilter.value || d.zone === zoneFilter.value) &&
+        (!stateFilter.value || d.state === stateFilter.value) &&
+        (!cityFilter.value  || d.city  === cityFilter.value) &&
+        (
+          !s ||
+          norm(d.city).includes(s) ||
+          norm(d.state).includes(s) ||
+          pin(d.address).includes(s)
+        )
+      )
+    );
+    if(selectedType === 'Store' && mapInstance){
+      const filteredStores = ALL_ITEMS.filter(d =>
+        d.type === "Store" &&
+        (!zoneFilter.value || d.zone === zoneFilter.value) &&
+        (!stateFilter.value || d.state === stateFilter.value) &&
+        (!cityFilter.value  || d.city  === cityFilter.value) &&
+        (!searchBox.value || norm(d.city).includes(norm(searchBox.value)) || norm(d.state).includes(norm(searchBox.value)) || pin(d.address).includes(searchBox.value))
+      );
+
+      initStoreMap(filteredStores, document.querySelector('.mapDiv'));
+    }
+  }
+
+  /* ---------------- FILTER DROPDOWNS ---------------- */
+  /* ---------------- FILTER DROPDOWNS ---------------- */
+    function populateFilters(){
+      zoneFilter.innerHTML  = `<option value="">All Zones</option>`;
+      stateFilter.innerHTML = `<option value="">State</option>`;
+      cityFilter.innerHTML  = `<option value="">City</option>`;
+
+      const src = ALL_ITEMS.filter(d=>d.type===selectedType);
+
+      // Populate zones
+      [...new Set(src.map(d=>d.zone))]
+        .forEach(z=>zoneFilter.innerHTML+=`<option value="${z}">${title(z)}</option>`);
+
+      // Populate states (filtered by current zone if any)
+      const statesSrc = src.filter(d => !zoneFilter.value || d.zone === zoneFilter.value);
+      [...new Set(statesSrc.map(d=>d.state))]
+        .forEach(s=>stateFilter.innerHTML+=`<option value="${s}">${title(s)}</option>`);
+
+      // Populate cities (filtered by current zone + state if any)
+      const citiesSrc = src.filter(d => 
+        (!zoneFilter.value || d.zone === zoneFilter.value) &&
+        (!stateFilter.value || d.state === stateFilter.value)
+      );
+      [...new Set(citiesSrc.map(d=>d.city))]
+        .forEach(c=>cityFilter.innerHTML+=`<option value="${c}">${title(c)}</option>`);
+    }
+
+  /* ---------------- EVENT HANDLERS ---------------- */
+
+  // When zone changes → update states & cities
+  zoneFilter.onchange = () => {
+    const src = ALL_ITEMS.filter(d=>d.type===selectedType);
+
+    // Populate states based on selected zone
+    stateFilter.innerHTML = `<option value="">State</option>`;
+    const states = src.filter(d => !zoneFilter.value || d.zone === zoneFilter.value)
+                      .map(d => d.state);
+    [...new Set(states)].forEach(s => stateFilter.innerHTML += `<option value="${s}">${title(s)}</option>`);
+
+    // Reset city dropdown
+    cityFilter.innerHTML = `<option value="">City</option>`;
+    const cities = src.filter(d => !zoneFilter.value || d.zone === zoneFilter.value)
+                      .map(d => d.city);
+    [...new Set(cities)].forEach(c => cityFilter.innerHTML += `<option value="${c}">${title(c)}</option>`);
+
+    apply();
+  };
+
+  // When state changes → update cities based on zone + state
+  stateFilter.onchange = () => {
+    const src = ALL_ITEMS.filter(d=>d.type===selectedType);
+
+    cityFilter.innerHTML = `<option value="">City</option>`;
+    const cities = src.filter(d => 
+      (!zoneFilter.value || d.zone === zoneFilter.value) &&
+      (!stateFilter.value || d.state === stateFilter.value)
+    ).map(d => d.city);
+    [...new Set(cities)].forEach(c => cityFilter.innerHTML += `<option value="${c}">${title(c)}</option>`);
+
+    apply();
+  };
+
+  // City just triggers filtering
+  cityFilter.onchange = apply;
+
+  // Search box triggers filtering
+  searchBox.oninput = apply;
+
+    {% comment %} stateFilter.onchange = zoneFilter.onchange;
+    cityFilter.onchange = searchBox.oninput = apply; {% endcomment %}
+
+    /* ---------------- TYPE SWITCH ---------------- */
+    document.querySelectorAll(".type-btn").forEach(btn=>{
+      btn.onclick = ()=>{
+        document.querySelectorAll(".type-btn").forEach(b=>b.classList.remove("active"));
+        btn.classList.add("active");
+        selectedType = btn.dataset.type;
+        resetFilters(false);
+        populateFilters();
+        apply();
+      };
+    });
+
+    /* ---------------- RESET ---------------- */
+    function resetFilters(renderAll=true){
+      zoneFilter.value="";
+      stateFilter.value="";
+      cityFilter.innerHTML=`<option value="">City</option>`;
+      searchBox.value="";
+      if(renderAll) apply();
+      if(selectedType === 'Store' && mapInstance){
+        mapInstance.setZoom(5);
+        if(markers.length) mapInstance.panTo(markers[0].getPosition());
+      }
+
+    }
+
+    resetBtn.onclick = ()=>resetFilters(true);
+
+    /* ---------------- GEO LOCATION ---------------- */
+    async function getStateFromCoords(lat,lng){
+      const res = await fetch(
+        `https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lng}&key=${apiKey}`
+      );
+      const data = await res.json();
+
+      for(const r of data.results||[]){
+        for(const c of r.address_components){
+          if(c.types.includes("administrative_area_level_1"))
+            return c.long_name.toUpperCase();
+        }
+      }
+      return null;
+    }
+
+   useLocationBtn.onclick = () => {
+  if (!navigator.geolocation) {
+    alert("Geolocation is not supported by your browser.");
+    return;
+  }
+
+  navigator.geolocation.getCurrentPosition(
+    async (pos) => {
+      const detected = await getStateFromCoords(pos.coords.latitude, pos.coords.longitude);
+      if (!detected) {
+        alert("We couldn't detect your location. Please select your state manually.");
+        return;
+      }
+
+      const normDetected = normalizeState(detected);
+
+      const match = [...stateFilter.options].find(o => {
+        const optNorm = normalizeState(o.value);
+
+        if (optNorm === normDetected) return true;
+
+        return Object.entries(STATE_ALIASES)
+          .some(([k, v]) => normalizeState(k) === normDetected && v.map(normalizeState).includes(optNorm));
+      });
+
+      if (match) {
+        stateFilter.value = match.value;
+        stateFilter.dispatchEvent(new Event("change"));
+      } else {
+        alert(`Sorry! We currently have no distributors in ${detected}. Please select your state manually.`);
+      }
+
+    },
+    (err) => {
+      console.error(err);
+      alert("Unable to access your location. Please make sure location access is enabled and try again.");
+    }
+  );
+};
+
+
+    /* ---------------- INIT ---------------- */
+    const DEALERS = await loadExcel(fileUrl);
+    ALL_ITEMS = [...DEALERS, ...STORES];
+
+    if (window.location.href.includes("store")) {
+      document.querySelector('.type-btn[data-type="Store"]').classList.add("active");
+      selectedType = "Store";
+    } else {
+      document.querySelector('.type-btn[data-type="Distributor"]').classList.add("active");
+      selectedType = "Distributor";
+    }
+
+    populateFilters();
+    apply();
+
+  });
+  document.getElementById('MainContent').style.background='#0F0F0F'
+
+</script>
+
+
+
+
+{% schema %}
+{
+  "name": "Dealer Locator",
+  "settings": [
+    {
+      "type": "text",
+      "id": "file_url",
+      "label": "CSV File URL or Google Sheet Link"
+    },
+    {
+      "type": "text",
+      "id": "google_api_key",
+      "label": "Google Maps API Key (Geocoding Enabled)"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Dealer Locator"
+    }
+  ]
+}
+{% endschema %}

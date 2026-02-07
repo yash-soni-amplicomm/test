@@ -1,0 +1,425 @@
+<section class="timeline-section">
+  <div class="timeline-wrapper">
+
+    <!-- TIMELINE NAV -->
+    <div class="timeline-nav">
+
+      <div class="timeline-track">
+
+        {% for block in section.blocks %}
+          <div
+            class="timeline-item{% if forloop.first %} active{% endif %}"
+            data-index="{{ forloop.index0 }}">
+
+            <button class="timeline-year">
+              {{ block.settings.year }}
+            </button>
+
+            <span class="timeline-dot"></span>
+
+          </div>
+        {% endfor %}
+
+        <!-- Progress Line -->
+        <span class="timeline-progress"></span>
+      </div>
+
+    </div>
+
+    <!-- SLIDES -->
+    <div class="timeline-content">
+      {% for block in section.blocks %}
+        <div class="timeline-slide{% if forloop.first %} active{% endif %}">
+          <div class="timeline-text">
+            <div class="text-content-wrap">
+              {% if block.settings.title != blank %}
+                <h2>{{ block.settings.title }}</h2>
+              {% endif %}
+
+              {% if block.settings.subtitle != blank %}
+                <h4>{{ block.settings.subtitle }}</h4>
+              {% endif %}
+              {% if block.settings.subtitle2 != blank %}
+                <h4 style="margin-top:25px">{{ block.settings.subtitle2 }}</h4>
+              {% endif %}
+
+              {% if block.settings.text != blank %}
+                <div class="timeline-desc">
+                  {{ block.settings.text }}
+                </div>
+              {% endif %}
+
+            </div>
+            {% if forloop.first %}
+              <div class="timeline-controls">
+                <button class="next-btn non-border">Forward
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.38721 6.67285C9.48803 6.67285 9.56501 6.70326 9.64307 6.78125L14.5874 11.7256C14.6413 11.7795 14.6665 11.8215 14.6782 11.8496V11.8506C14.693 11.8861 14.7017 11.9259 14.7017 11.9746C14.7017 12.0233 14.693 12.0631 14.6782 12.0986V12.0996C14.6665 12.1277 14.6413 12.1697 14.5874 12.2236L9.61865 17.1924C9.54088 17.2702 9.47374 17.292 9.39307 17.2891C9.29904 17.2856 9.21818 17.2537 9.13232 17.168C9.0542 17.0898 9.02295 17.013 9.02295 16.9121C9.02295 16.8112 9.0542 16.7344 9.13232 16.6562L13.814 11.9746L9.10693 7.26758C9.02927 7.18988 9.00733 7.12357 9.01025 7.04297C9.0137 6.9487 9.04627 6.86731 9.13232 6.78125C9.21025 6.70344 9.28662 6.67293 9.38721 6.67285Z" fill="white" stroke="white"/>
+                  </svg>
+                </button>
+                
+
+              </div>
+            {% elsif forloop.last %}
+              <div class="timeline-controls">
+                <button class="prev-btn">Previous</button>
+              </div>
+
+            {% else %}
+              <div class="timeline-controls">
+                <button class="prev-btn">Previous</button>
+                <button class="next-btn non-border">Forward
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.38721 6.67285C9.48803 6.67285 9.56501 6.70326 9.64307 6.78125L14.5874 11.7256C14.6413 11.7795 14.6665 11.8215 14.6782 11.8496V11.8506C14.693 11.8861 14.7017 11.9259 14.7017 11.9746C14.7017 12.0233 14.693 12.0631 14.6782 12.0986V12.0996C14.6665 12.1277 14.6413 12.1697 14.5874 12.2236L9.61865 17.1924C9.54088 17.2702 9.47374 17.292 9.39307 17.2891C9.29904 17.2856 9.21818 17.2537 9.13232 17.168C9.0542 17.0898 9.02295 17.013 9.02295 16.9121C9.02295 16.8112 9.0542 16.7344 9.13232 16.6562L13.814 11.9746L9.10693 7.26758C9.02927 7.18988 9.00733 7.12357 9.01025 7.04297C9.0137 6.9487 9.04627 6.86731 9.13232 6.78125C9.21025 6.70344 9.28662 6.67293 9.38721 6.67285Z" fill="white" stroke="white"/>
+                  </svg>
+                </button>
+              </div>
+            {% endif %}
+          </div>
+
+          {% if block.settings.image %}
+            <div class="timeline-image">
+              <img
+                src="{{ block.settings.image | image_url: width: 420 }}"
+                loading="lazy"
+                alt="{{ block.settings.title }}">
+            </div>
+          {% endif %}
+
+        </div>
+      {% endfor %}
+    </div>
+
+  </div>
+</section>
+
+<style>
+.timeline-section {
+  background: #0c0c0c;
+  color: #fff;
+  padding: 60px 20px;
+}
+
+.timeline-wrapper {
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* NAV SCROLL */
+.timeline-nav {
+  overflow-x: auto;
+  padding-bottom: 20px;
+  scrollbar-width: none;
+}
+
+.timeline-nav::-webkit-scrollbar {
+  display: none;
+}
+
+/* TRACK */
+.timeline-track {
+  display: flex;
+  gap: 60px;
+  position: relative;
+  padding: 0 20px;
+  min-width: max-content;
+  margin-bottom:50px
+}
+
+/* LINE */
+.timeline-track::before {
+  content: "";
+  position: absolute;
+  top: 75px;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: #a4824c;
+  z-index: 0;
+}
+
+/* PROGRESS */
+.timeline-progress {
+  position: absolute;
+  top: 75px;
+  left: 0;
+  height: 3px;
+  background: #fff;
+  width: 0px; /* pixels now */
+  z-index: 1;
+  transition: width 0.4s ease;
+}
+
+
+/* ITEM */
+.timeline-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  cursor: pointer;
+  flex-shrink: 0;
+  z-index: 2;
+  width:12%
+}
+
+/* YEAR */
+.timeline-year {
+  background: none;
+  border: none;
+  font-size: 40px;
+  font-family: "Boska Variable";
+  font-weight: 700;
+  color: #666;
+  cursor: pointer;
+  margin-bottom: 18px;
+  transition: 0.3s;
+}
+
+.timeline-item.active .timeline-year {
+  color: #fff;
+}
+
+/* DOT */
+.timeline-dot {
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #555;
+  transition: 0.3s;
+  border:7px solid black
+}
+
+.timeline-item.active .timeline-dot {
+  background: #fff;
+  transform: scale(1.3);
+}
+
+/* CONTENT */
+.timeline-content {
+  position: relative;
+}
+
+.timeline-slide {
+  opacity: 0;
+  display: none;
+  gap: 50px;
+  align-items: center;
+  justify-content: space-between;
+  transition: opacity 0.35s ease;
+}
+
+.timeline-slide.active {
+  opacity: 1;
+  display:flex
+}
+
+/* TEXT */
+.timeline-text {
+  width: 45%;
+}
+.text-content-wrap{
+  height:300px
+}
+
+.timeline-text h2 {
+  margin:0;
+  font-family: Boska Variable;
+  font-weight: 700;
+  font-size: 64px;
+  line-height: 63px;
+}
+
+.timeline-text h4 {
+  color:#E2E2E2;
+  font-weight: 400;
+  font-size: 25px;
+  line-height: 100%;
+  margin:10px 0;
+  font-family: DM Sans;
+
+}
+
+
+.timeline-desc {
+  margin-top:20px;
+  font-family: DM Sans;
+  font-weight: 500;
+  font-size: 19px;
+  line-height: 100%;
+
+}
+.timeline-image{
+  width:45%
+}
+/* IMAGE */
+.timeline-image img {
+  width: 100%;
+  border-radius: 18px;
+}
+
+/* CONTROLS */
+.timeline-controls {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+  align-items:center
+}
+
+.timeline-controls button {
+  padding: 10px 18px;
+  border: 1px solid #fff;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size:18px;
+  font-weight:bold
+}
+
+.timeline-controls .non-border{
+  border: 0px;
+  padding: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+
+}
+
+.timeline-controls button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .timeline-year {
+    font-size: 18px;
+  }
+
+  .timeline-slide.active {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .timeline-progress,.timeline-track::before  {
+    top: 48px;
+  }
+  .timeline-text,
+  .timeline-image{
+    width:100%
+  }
+  .timeline-item {
+    width:5%
+  }
+  .timeline-text h2 {
+    font-weight: 700;
+    font-size: 44px;
+    line-height:43px
+  }
+
+  .timeline-text h4 {
+    font-size: 22px;
+  }
+
+
+  .timeline-desc {
+    font-size: 14px;
+
+  }
+  .text-content-wrap{
+    height:auto
+  }
+}
+
+
+</style>
+<script>
+(function () {
+  const slides = document.querySelectorAll(".timeline-slide");
+  const items = document.querySelectorAll(".timeline-item");
+  const progress = document.querySelector(".timeline-progress");
+
+  let currentIndex = 0;
+
+  function updateUI(index) {
+    currentIndex = index;
+
+    slides.forEach((slide, i) => {
+      slide.classList.toggle("active", i === index);
+    });
+
+    items.forEach((item, i) => {
+      item.classList.toggle("active", i <= index);
+    });
+
+    /* ✅ Correct Progress Line */
+    const activeDot = items[index].querySelector(".timeline-dot");
+
+    const dotLeft =
+      activeDot.offsetLeft + activeDot.offsetWidth / 2;
+
+    progress.style.width = dotLeft + "px";
+
+    /* Scroll active item into view */
+    items[index].scrollIntoView({
+      behavior: "smooth",
+      inline: "center",
+      block: "nearest"
+    });
+
+    /* Buttons */
+    const activeSlide = slides[index];
+    const prevBtn = activeSlide.querySelector(".prev-btn");
+    const nextBtn = activeSlide.querySelector(".next-btn");
+
+    prevBtn.disabled = index === 0;
+    nextBtn.disabled = index === slides.length - 1;
+  }
+
+
+  /* Click Navigation */
+  items.forEach((item, i) => {
+    item.addEventListener("click", () => updateUI(i));
+  });
+
+  /* Next / Prev */
+  document.addEventListener("click", (e) => {
+    if (e.target.closest(".next-btn") && currentIndex < slides.length - 1) {
+      updateUI(currentIndex + 1);
+    }
+
+    if (e.target.closest(".prev-btn") && currentIndex > 0) {
+      updateUI(currentIndex - 1);
+    }
+  });
+
+  updateUI(0);
+})();
+</script>
+
+
+{% schema %}
+{
+  "name": "Timeline history",
+  "blocks": [
+    {
+      "type": "year",
+      "name": "Year slide",
+      "settings": [
+        { "type": "text", "id": "year", "label": "Year" },
+        { "type": "text", "id": "title", "label": "Title" },
+        { "type": "text", "id": "subtitle", "label": "Subtitle" },
+        { "type": "text", "id": "subtitle2", "label": "Subtitle 2" },
+        {
+          "type": "richtext",
+          "id": "text",
+          "label": "Description"
+        },
+        { "type": "image_picker", "id": "image", "label": "Image" }
+      ]
+    }
+  ],
+  "presets": [
+    { "name": "Timeline history" }
+  ]
+}
+{% endschema %}

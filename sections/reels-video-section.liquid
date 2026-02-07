@@ -1,0 +1,336 @@
+<section class="reels-section">
+  <div class="reels-header">
+    <h2 class="reels-heading" style="font-size: {{ section.settings.heading_size }}px;">
+      {{ section.settings.heading }}
+    </h2>
+
+    {% if section.settings.subheading != blank %}
+      <p class="reels-subheading" style="font-size: {{ section.settings.subheading_size }}px;">
+        {{ section.settings.subheading }}
+      </p>
+    {% endif %}
+  </div>
+
+  <div class="reels-slider-wrapper">
+  <div class="reels-slider">
+    <div class="reels-track" id="reelsTrack">
+      {% for block in section.blocks %}
+        <div class="reel-slide">
+          {% if block.settings.video != blank %}
+            {{ block.settings.video | video_tag:
+              autoplay: true,
+              loop: true,
+              muted: true,
+              playsinline: true,
+              controls: false,
+              class: 'reel-video'
+            }}
+          {% endif %}
+
+          {% if block.settings.product != blank %}
+            {% assign product = all_products[block.settings.product] %}
+            <div class="reel-product-card">
+              <div class="reel-product-image">
+                <img src="{{ product.featured_image | image_url: width: 120 }}" alt="{{ product.title }}">
+              </div>
+              <div class="reel-product-info">
+                <p class="reel-product-title">{{ product.title }}</p>
+                <p class="reel-product-price">{{ product.price | money }}</p>
+              </div>
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <div class="reels-dots" id="reelsDots">
+    {% for block in section.blocks %}
+      <span class="dot"></span>
+    {% endfor %}
+  </div>
+</div>
+
+</section>
+
+
+<style>
+/* SECTION */
+.reels-section {
+  padding: 32px 16px;
+}
+
+/* HEADER */
+.reels-header {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.reels-heading {
+  margin: 0;
+  font-weight: 500;
+  color: #1E1D1D;
+  font-family: "Boska Variable";
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  letter-spacing: 1.68px;
+}
+
+.reels-subheading {
+  margin-top: 6px;
+  color: #757575;
+  font-family: "DM Sans";
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+}
+
+/* SLIDER */
+.reels-slider-wrapper {
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+.reels-slider {
+  display: flex;
+  gap: 10px;
+  overflow-x: hidden;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.reels-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* SLIDE */
+.reel-slide {
+  flex: 0 0 auto;
+  width: 300px;
+  scroll-snap-align: center;
+}
+
+/* VIDEO */
+.reel-video {
+  width: 300px;
+  height: 380px;
+  object-fit: cover;
+  display: block;
+}
+
+@media(max-width:768px){
+    .reel-video{
+        width:272px;
+        height:345px;
+    }
+}
+
+/* PRODUCT CARD */
+.reel-product-card {
+  display: flex;
+  padding: 9px 13px;
+  align-items: center;
+  background: #FFF;
+  margin-top: 8px;
+  gap: 12px;
+  box-sizing: border-box;
+  position: relative;
+}
+.reel-product-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border: 1px solid #A4824C;
+  pointer-events: none;
+}
+
+.reel-product-image {
+  flex-shrink: 0;
+}
+
+.reel-product-image img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+  display: block;
+}
+
+.reel-product-info {
+  text-align: left;
+}
+
+.reel-product-title {
+  font-size: 12px;
+  margin: 0;
+}
+
+.reel-product-price {
+  font-size: 13px;
+  font-weight: 500;
+  margin: 2px 0 0;
+}
+
+/* DOTS */
+.reels-dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 14px;
+}
+
+.reels-dots .dot {
+  width: 7px;
+  height: 7px;
+  background: #BABABA;
+  border-radius: 50%;
+}
+
+/* RESPONSIVE */
+@media (max-width: 480px) {
+  .reel-slide,
+  .reel-video {
+    width: 260px;
+    height: 340px;
+  }
+}
+
+/* hide scroll bar completely */
+.reels-slider {
+  scrollbar-width: none;
+}
+.reels-slider::-webkit-scrollbar {
+  display: none;
+}
+
+/* active dot */
+.reels-dots .dot.active {
+  background: #0F0F0F;
+}
+
+.reels-track {
+  display: flex;
+  gap: 10px;
+  will-change: transform;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const track = document.getElementById('reelsTrack');
+  const slides = Array.from(track.children);
+  const dots = document.querySelectorAll('#reelsDots .dot');
+
+  const gap = 10;
+  const slideWidth = slides[0].offsetWidth + gap;
+  const total = slides.length;
+
+  let index = 0;
+  let animating = false;
+
+  // clone slides for seamless loop
+  slides.forEach(slide => track.appendChild(slide.cloneNode(true)));
+
+  function updateDots(i) {
+    dots.forEach(dot => dot.classList.remove('active'));
+    dots[i % total].classList.add('active');
+  }
+
+  function moveTo(i, animate = true) {
+    if (animating) return;
+    animating = true;
+
+    track.style.transition = animate ? 'transform 0.8s ease-in-out' : 'none';
+    track.style.transform = `translateX(-${i * slideWidth}px)`;
+    updateDots(i);
+
+    setTimeout(() => {
+      if (i >= total) {
+        track.style.transition = 'none';
+        track.style.transform = 'translateX(0)';
+        index = 0;
+        updateDots(0);
+      }
+      animating = false;
+    }, 850);
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      index = i;
+      moveTo(index);
+    });
+  });
+
+  setInterval(() => {
+    index++;
+    moveTo(index);
+  }, 3000);
+
+  updateDots(0);
+});
+</script>
+
+
+
+{% schema %}
+{
+  "name": "Video Reels Section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Yera World"
+    },
+    {
+      "type": "range",
+      "id": "heading_size",
+      "label": "Heading Font Size",
+      "min": 18,
+      "max": 48,
+      "step": 1,
+      "default": 28
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See it in action, shop with confidence"
+    },
+    {
+      "type": "range",
+      "id": "subheading_size",
+      "label": "Subheading Font Size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "default": 14
+    }
+  ],
+  "blocks": [
+    {
+      "type": "reel",
+      "name": "Video Reel",
+      "settings": [
+        {
+          "type": "video",
+          "id": "video",
+          "label": "Upload Video"
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Select Product"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 10,
+  "presets": [
+    {
+      "name": "Video Reels with Products"
+    }
+  ]
+}
+{% endschema %}

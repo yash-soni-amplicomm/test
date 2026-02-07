@@ -1,0 +1,233 @@
+<section class="image-features-section page-width">
+  <div class="image-features-wrapper">
+    
+    {% if section.settings.image != blank %}
+      <div class="image-features-image">
+        <img
+          srcset="{{ section.settings.image | image_url: width: 900 }}"
+          alt="{{ section.settings.image.alt | escape }}"
+          loading="lazy"
+          width="900"
+          height="900"
+        >
+      </div>
+    {% endif %}
+
+    <div class="image-features-content">
+      {% if section.settings.heading != blank %}
+        <h2>{{ section.settings.heading }}</h2>
+      {% endif %}
+
+      <ul class="features-list">
+        {% for block in section.blocks %}
+          <li class="feature-item" {{ block.shopify_attributes }}>
+            
+            {% if block.settings.icon != blank %}
+              <span class="feature-icon">
+                {{ block.settings.icon }}
+              </span>
+            {% endif %}
+
+            <div class="feature-text">
+              <h3>{{ block.settings.title }}</h3>
+              <p class="feature-text-content">{{ block.settings.text }}</p>
+
+              {% if block.settings.link_label != blank %}
+                <button
+  class="feature-link read-more-btn"
+  aria-expanded="false"
+  data-more="{{ block.settings.link_label }}"
+  data-less="Learn less"
+>
+  {{ block.settings.link_label }}
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+  <path d="M9.38721 6.67285C9.48803 6.67285 9.56501 6.70326 9.64307 6.78125L14.5874 11.7256C14.6413 11.7795 14.6665 11.8215 14.6782 11.8496V11.8506C14.693 11.8861 14.7017 11.9259 14.7017 11.9746C14.7017 12.0233 14.693 12.0631 14.6782 12.0986V12.0996C14.6665 12.1277 14.6413 12.1697 14.5874 12.2236L9.61865 17.1924C9.54088 17.2702 9.47374 17.292 9.39307 17.2891C9.29904 17.2856 9.21818 17.2537 9.13232 17.168C9.0542 17.0898 9.02295 17.013 9.02295 16.9121C9.02295 16.8112 9.0542 16.7344 9.13232 16.6562L13.814 11.9746L9.10693 7.26758C9.02927 7.18988 9.00733 7.12357 9.01025 7.04297C9.0137 6.9487 9.04627 6.86731 9.13232 6.78125C9.21025 6.70344 9.28662 6.67293 9.38721 6.67285Z" fill="#0F0F0F" stroke="#0F0F0F"/>
+</svg>
+</button>
+              {% endif %}
+            </div>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<script async>
+  document.addEventListener('click', function (e) {
+    const btn = e.target.closest('.read-more-btn');
+    if (!btn) return;
+
+    const text = btn.previousElementSibling;
+    const expanded = btn.getAttribute('aria-expanded') === 'true';
+
+    text.classList.toggle('is-expanded');
+    btn.setAttribute('aria-expanded', !expanded);
+
+    btn.childNodes[0].textContent = expanded
+      ? btn.dataset.more
+      : btn.dataset.less;
+  });
+</script>
+
+
+
+<style>
+    .image-features-section{
+    padding:40px 20px;
+    background:#fff;
+    }
+
+    .feature-text-content {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.feature-text-content.is-expanded {
+  -webkit-line-clamp: unset;
+}
+    .feature-link {
+         all: unset;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px; 
+  text-decoration: none;
+}
+    .image-features-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  {% comment %} align-items: center; {% endcomment %}
+}
+
+.image-features-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.feature-item {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.feature-icon {
+  color: #1e40af;
+  font-size: 22px;
+  line-height: 1;
+  
+}
+.feature-icon svg {
+    max-width:100px;
+}
+
+.feature-text h3 {
+  margin: 0 0 0.25rem;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.feature-text p {
+  margin: 0 0 0.5rem;
+  font-size: 14px;
+  color: #555;
+}
+
+.feature-link {
+  font-size: 14px;
+  text-decoration: none;
+  color: #1e40af;
+}
+
+@media (max-width: 768px) {
+  .image-features-wrapper {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+   .image-features-content {
+    order: 1;
+  }
+
+  .image-features-image {
+    order: 2;
+  }
+}
+
+</style>
+
+{% schema %}
+{
+  "name": "Image with Features",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Left Image"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Why Choose Us"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature Item",
+      "settings": [
+        {
+          "type": "html",
+          "id": "icon",
+          "label": "Icon (SVG or HTML)",
+          "default": "★"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Feature title"
+        },
+        {
+          "type": "textarea",
+          "id": "text",
+          "label": "Description",
+          "default": "Feature description goes here."
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Learn"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Image with Features",
+      "blocks": [
+        { "type": "feature" },
+        { "type": "feature" },
+        { "type": "feature" }
+      ]
+    }
+  ]
+}
+{% endschema %}

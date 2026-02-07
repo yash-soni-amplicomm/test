@@ -1,0 +1,322 @@
+{% if template contains 'collection' %}
+
+{% assign desktop_banner = collection.metafields.custom.collection_banner %}
+{% assign mobile_banner = collection.metafields.custom.collection_banner_mobile %}
+
+{% if desktop_banner != blank or mobile_banner != blank %}
+
+<section
+  class="plp-banner-wrapper"
+  style="
+    margin-top: {{ section.settings.margin_top }}px;
+    margin-bottom: {{ section.settings.margin_bottom }}px;
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  "
+>
+
+  <!-- Desktop Banner -->
+  {% if desktop_banner != blank %}
+    <div class="plp-banner-image desktop-only">
+      <img
+        src="{{ desktop_banner | image_url: width: 2000 }}"
+        alt="{{ collection.title }}"
+        loading="lazy"
+        style="max-height: {{ section.settings.banner_height_desktop }}px;"
+      >
+    </div>
+  {% endif %}
+
+  <!-- Mobile Banner -->
+  {% if mobile_banner != blank %}
+    <div class="plp-banner-image mobile-only">
+      <img
+        src="{{ mobile_banner | image_url: width: 1000 }}"
+        alt="{{ collection.title }}"
+        loading="lazy"
+        style="max-height: {{ section.settings.banner_height_mobile }}px;"
+      >
+    </div>
+  {% endif %}
+
+  <!-- Overlay Content -->
+  <div
+    class="plp-banner-content"
+    style="justify-content: {{ section.settings.text_alignment }};"
+  >
+
+    <!-- Overlay Background Only -->
+    <div
+      class="plp-banner-overlay"
+      style="
+        background: {{ section.settings.overlay_color }};
+        opacity: {{ section.settings.overlay_opacity }};
+      "
+    ></div>
+
+    <!-- Text Content Above Overlay -->
+    <div class="plp-banner-text">
+
+      <h1
+        class="plp-banner-title"
+        style="
+          color: {{ section.settings.title_color }};
+          font-size: {{ section.settings.title_font_size }}px;
+        "
+      >
+        {{ collection.title }}
+      </h1>
+
+      {% if section.settings.show_description and collection.description != blank %}
+        <p
+          class="plp-banner-desc"
+          style="
+            color: {{ section.settings.desc_color }};
+            font-size: {{ section.settings.desc_font_size }}px;
+          "
+        >
+          {{ collection.description | strip_html | truncate: 180 }}
+        </p>
+      {% endif %}
+
+    </div>
+  </div>
+
+</section>
+
+{% endif %}
+{% endif %}
+
+<style>
+/* Wrapper */
+.plp-banner-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+/* Banner Image */
+.plp-banner-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+}
+
+/* Responsive Switch */
+.desktop-only {
+  display: block;
+}
+.mobile-only {
+  display: none;
+}
+
+@media screen and (max-width: 749px) {
+  .desktop-only {
+    display: none;
+  }
+  .mobile-only {
+    display: block;
+  }
+}
+
+/* Overlay Content Wrapper */
+.plp-banner-content {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Overlay Background Layer */
+.plp-banner-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+/* Text Layer Above Overlay */
+.plp-banner-text {
+  position: relative;
+  z-index: 2;
+  padding: 30px;
+}
+
+/* Title */
+.plp-banner-title {
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Description */
+.plp-banner-desc {
+  margin-top: 12px;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+}
+</style>
+
+{% schema %}
+{
+  "name": "Custom Collection Banner",
+  "settings": [
+
+    {
+      "type": "header",
+      "content": "Banner Height Settings"
+    },
+    {
+      "type": "range",
+      "id": "banner_height_desktop",
+      "label": "Desktop Banner Max Height (px)",
+      "min": 200,
+      "max": 800,
+      "step": 20,
+      "default": 500
+    },
+    {
+      "type": "range",
+      "id": "banner_height_mobile",
+      "label": "Mobile Banner Max Height (px)",
+      "min": 100,
+      "max": 600,
+      "step": 20,
+      "default": 300
+    },
+
+    {
+      "type": "header",
+      "content": "Text Customization"
+    },
+    {
+      "type": "color",
+      "id": "title_color",
+      "label": "Title Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "title_font_size",
+      "label": "Title Font Size (px)",
+      "min": 18,
+      "max": 80,
+      "step": 2,
+      "default": 42
+    },
+
+    {
+      "type": "checkbox",
+      "id": "show_description",
+      "label": "Show Collection Description",
+      "default": true
+    },
+    {
+      "type": "color",
+      "id": "desc_color",
+      "label": "Description Text Color",
+      "default": "#ffffff"
+    },
+    {
+      "type": "range",
+      "id": "desc_font_size",
+      "label": "Description Font Size (px)",
+      "min": 12,
+      "max": 30,
+      "step": 1,
+      "default": 16
+    },
+
+    {
+      "type": "header",
+      "content": "Overlay Settings"
+    },
+    {
+      "type": "color",
+      "id": "overlay_color",
+      "label": "Overlay Background Color",
+      "default": "#000000"
+    },
+    {
+      "type": "range",
+      "id": "overlay_opacity",
+      "label": "Overlay Opacity",
+      "min": 0,
+      "max": 1,
+      "step": 0.1,
+      "default": 0.4
+    },
+
+    {
+      "type": "select",
+      "id": "text_alignment",
+      "label": "Text Vertical Alignment",
+      "options": [
+        {
+          "value": "flex-start",
+          "label": "Top"
+        },
+        {
+          "value": "center",
+          "label": "Center"
+        },
+        {
+          "value": "flex-end",
+          "label": "Bottom"
+        }
+      ],
+      "default": "center"
+    },
+
+    {
+      "type": "header",
+      "content": "Spacing Settings"
+    },
+    {
+      "type": "range",
+      "id": "margin_top",
+      "label": "Margin Top (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "margin_bottom",
+      "label": "Margin Bottom (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 20
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "label": "Padding Top (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "label": "Padding Bottom (px)",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "default": 0
+    }
+
+  ],
+
+  "presets": [
+    {
+      "name": "Custom Collection Banner"
+    }
+  ]
+}
+{% endschema %}

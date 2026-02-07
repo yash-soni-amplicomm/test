@@ -1,0 +1,529 @@
+
+{% comment %} /* Custom code  Hanuman*/ {% endcomment %}
+ 
+{%- if section.blocks.size > 0 -%}
+  <section class="testimonials-section section--page-width color-scheme-{{ section.settings.color_scheme }}" data-section-id="{{ section.id }}">
+    <div class="testimonials-carousel" data-carousel data-autoplay="{{ section.settings.autoplay }}" data-autoplay-speed="{{ section.settings.autoplay_speed | times: 1000 }}">
+      <div class="carousel-wrapper">
+        <div class="carousel-track" data-track>
+          {%- for block in section.blocks -%}
+            <div class="testimonial-slide{% if forloop.first %} active{% endif %}" data-slide="{{ forloop.index0 }}" {{ block.shopify_attributes }}>
+              <div class="testimonial-content">
+                <!-- Text Side -->
+                <div class="testimonial-text">
+                  <div class="stars" aria-label="5 stars">★★★★★</div>
+                  <blockquote class="quote">
+                    {{ block.settings.quote }}
+                  </blockquote>
+                  <div class="author">
+                    {%- if block.settings.author_image -%}
+                      <img src="{{ block.settings.author_image | image_url: width: 56 }}" alt="{{ block.settings.name }}" class="author-avatar" loading="lazy" width="56" height="56">
+                    {%- endif -%}
+                    <div class="author-info">
+                      <p class="author-info-brand">{{block.settings.author-info-brand }}</p>
+                      <p class="name">{{ block.settings.name }}</p>
+                      <p class="location">{{ block.settings.location }}</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- Image Side -->
+                <div class="testimonial-image">
+                  {%- if block.settings.image -%}
+                    <img src="{{ block.settings.image | image_url: width: 600 }}" alt="{{ block.settings.quote | truncate: 50 }}" loading="lazy" width="600" height="400" class="media">
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      
+      <!-- Navigation Controls -->
+      {%- if section.blocks.size > 1 -%}
+        <button class="carousel-button prev" data-prev aria-label="Previous testimonial">
+          <span class="svg-wrapper icon-arrow icon-left">
+            {{ 'icon-arrow.svg' | inline_asset_content }}
+          </span>
+        </button>
+
+
+        <button class="carousel-button next" data-next aria-label="Next testimonial">
+          <span class="svg-wrapper icon-arrow icon-right">
+            {{ 'icon-arrow.svg' | inline_asset_content }}
+          </span>
+        </button>
+
+        
+        <!-- Pagination Dots -->
+        <div class="carousel-pagination" data-pagination>
+          {%- for block in section.blocks -%}
+            <button class="dot{% if forloop.first %} active{% endif %}" data-dot="{{ forloop.index0 }}" aria-label="Go to slide {{ forloop.index }}"></button>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </section>
+
+  <script>
+    (function() {
+      'use strict';
+      
+      function initCarousel() {
+        const carousel = document.querySelector('[data-carousel]');
+        if (!carousel) return;
+        
+        const track = carousel.querySelector('[data-track]');
+        const slides = carousel.querySelectorAll('[data-slide]');
+        const prevBtn = carousel.querySelector('[data-prev]');
+        const nextBtn = carousel.querySelector('[data-next]');
+        const pagination = carousel.querySelector('[data-pagination]');
+        const dots = pagination ? pagination.querySelectorAll('[data-dot]') : [];
+        
+        // Get settings from data attributes
+        const autoplayEnabled = carousel.getAttribute('data-autoplay') === 'true';
+        const autoplaySpeed = parseInt(carousel.getAttribute('data-autoplay-speed')) || 5000;
+        
+        if (slides.length <= 1) return;
+        
+        let currentIndex = 0;
+        let autoplayInterval = null;
+        let isTransitioning = false;
+        
+        function goToSlide(index) {
+          if (isTransitioning) return;
+          isTransitioning = true;
+          
+          slides[currentIndex].classList.remove('active');
+          if (dots.length) dots[currentIndex].classList.remove('active');
+          
+          currentIndex = (index + slides.length) % slides.length;
+          
+          slides[currentIndex].classList.add('active');
+          if (dots.length) dots[currentIndex].classList.add('active');
+          
+          setTimeout(function() {
+            isTransitioning = false;
+          }, 600);
+        }
+        
+        function nextSlide() {
+          goToSlide(currentIndex + 1);
+        }
+        
+        function prevSlide() {
+          goToSlide(currentIndex - 1);
+        }
+        
+        function startAutoplay() {
+          if (!autoplayEnabled) return;
+          stopAutoplay();
+          autoplayInterval = setInterval(nextSlide, autoplaySpeed);
+        }
+        
+        function stopAutoplay() {
+          if (autoplayInterval) {
+            clearInterval(autoplayInterval);
+            autoplayInterval = null;
+          }
+        }
+        
+        // Event Listeners
+        if (prevBtn) {
+          prevBtn.addEventListener('click', function() {
+            prevSlide();
+            stopAutoplay();
+          });
+        }
+        
+        if (nextBtn) {
+          nextBtn.addEventListener('click', function() {
+            nextSlide();
+            stopAutoplay();
+          });
+        }
+        
+        dots.forEach(function(dot) {
+          dot.addEventListener('click', function() {
+            const index = parseInt(this.getAttribute('data-dot'));
+            goToSlide(index);
+            stopAutoplay();
+          });
+        });
+        
+        // Touch/Swipe Support
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        track.addEventListener('touchstart', function(e) {
+          touchStartX = e.changedTouches[0].screenX;
+          stopAutoplay();
+        }, { passive: true });
+        
+        track.addEventListener('touchend', function(e) {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+        }, { passive: true });
+        
+        function handleSwipe() {
+          const swipeThreshold = 50;
+          const diff = touchStartX - touchEndX;
+          
+          if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+              nextSlide();
+            } else {
+              prevSlide();
+            }
+          }
+        }
+        
+        // Keyboard Navigation
+        carousel.addEventListener('keydown', function(e) {
+          if (e.key === 'ArrowLeft') {
+            prevSlide();
+            stopAutoplay();
+          } else if (e.key === 'ArrowRight') {
+            nextSlide();
+            stopAutoplay();
+          }
+        });
+        
+        // Pause on Hover
+        carousel.addEventListener('mouseenter', stopAutoplay);
+        carousel.addEventListener('mouseleave', startAutoplay);
+        
+        // Start Autoplay
+        startAutoplay();
+        
+        // Pause when page is hidden
+        document.addEventListener('visibilitychange', function() {
+          if (document.hidden) {
+            stopAutoplay();
+          } else {
+            startAutoplay();
+          }
+        });
+      }
+      
+      // Initialize on DOM ready
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initCarousel);
+      } else {
+        initCarousel();
+      }
+      
+      // Reinitialize on Shopify section reload
+      if (typeof Shopify !== 'undefined' && Shopify.designMode) {
+        document.addEventListener('shopify:section:load', initCarousel);
+      }
+    })();
+  </script>
+
+  <style>
+    .testimonials-section {
+      padding: 40px 20px;
+    }
+    
+    .testimonials-carousel {
+      {% comment %} position: relative; {% endcomment %}
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    
+    .carousel-wrapper {
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .carousel-track {
+      position: relative;
+      width: 100%;
+    }
+    
+    .testimonial-slide {
+      display: none;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+    }
+    
+    .testimonial-slide.active {
+      display: block;
+      opacity: 1;
+    }
+    
+    .testimonial-content {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      align-items: center;
+    }
+    
+    .testimonial-text {
+      padding: 20px;
+    }
+    
+    .stars {
+      color: #A4824C;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      line-height: 1;
+    }
+    
+    .quote {
+      font-size: 19px;
+      font-weight: 700;
+      line-height: normal;
+      font-style: normal;
+      font-size: 1.2rem;
+      margin: 15px 0 20px;
+      line-height: 1.6;
+      color: #333;
+    }
+    
+    .author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .author-avatar {
+      border-radius: 50%;
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+    }
+
+    .author-info-brand{
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 600;
+      line-height: normal;
+      color:#9B9B9B;
+      margin:0;
+    }
+    
+    .author-info .name {
+      font-weight: 600;
+      margin: 0;
+      color: #000;
+    }
+    
+    .author-info .location {
+      margin: 0;
+      color: #666;
+      font-size: 0.9rem;
+    }
+    
+    .testimonial-image img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      object-fit: cover;
+      max-height: 400px;
+    }
+    
+    /* Navigation Buttons */
+    .carousel-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);      
+      border: none;
+      border-radius: 50%;
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      z-index: 4;
+      background:none;
+    }
+
+    /* Rotate caret */
+    .icon-left {
+      transform: rotate(180deg);
+    }
+
+    .carousel-button.prev {
+      left: 10px;
+    }
+    
+    .carousel-button.next {
+      right: 10px;
+    }
+    
+    .carousel-button svg {
+      color: #000000;
+    }
+    
+    /* Pagination Dots */
+    .carousel-pagination {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 30px;
+    }
+    
+    .carousel-pagination .dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: #ddd;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      padding: 0;
+    }
+    
+    .carousel-pagination .dot:hover {
+      background: #999;
+    }
+    
+    .carousel-pagination .dot.active {
+      background: #000;
+      width: 32px;
+      border-radius: 6px;
+    }
+    
+    /* Mobile Responsiveness */
+    @media (max-width: 768px) {
+      .testimonials-section {
+        padding: 30px 15px;
+      }
+      
+      .testimonial-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      
+      .testimonial-text {
+        padding: 15px;
+        text-align: center;
+      }
+      
+      .author {
+        justify-content: center;
+      }
+      
+      .quote {
+        font-size: 1.1rem;
+      }
+      
+      .carousel-button {
+        width: 40px;
+        height: 40px;
+      }
+      
+      .carousel-button.prev {
+        left: 5px;
+        color:#fff;
+        
+      }
+      
+      .carousel-button.next {
+        right: 5px;
+        color:#fff;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stars {
+        font-size: 1.2rem;
+      }
+      
+      .quote {
+        font-size: 1rem;
+      }
+      
+      .carousel-pagination {
+        margin-top: 20px;
+      }
+    }
+  </style>
+{%- endif -%}
+
+{% schema %}
+{
+  "name": "Testimonials Carousel",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1"
+    },
+    {
+      "type": "checkbox",
+      "id": "autoplay",
+      "label": "Enable autoplay",
+      "default": true
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "min": 2,
+      "max": 10,
+      "step": 1,
+      "unit": "s",
+      "label": "Autoplay speed",
+      "default": 5
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "I've tried every brand... survived 3 years without a single chip."
+        },
+        {
+          "type":"text",
+          "id":"author-info-brand",
+          "label":"Brand",
+          "default":"Oak Collection",
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Oak Meera Sharma"
+        },
+        {
+          "type": "text",
+          "id": "location",
+          "label": "Location",
+          "default": "Pune, Suhana"
+        },
+        {
+          "type": "image_picker",
+          "id": "author_image",
+          "label": "Author Avatar"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Testimonial Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Testimonials Carousel",
+      "blocks": [
+        {
+          "type": "testimonial"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

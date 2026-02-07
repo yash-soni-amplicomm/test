@@ -1,0 +1,937 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "main": {
+      "type": "main-page",
+      "blocks": {
+        "heading": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.page.title }}</h1>",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#000000",
+            "width": "100%",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "page-content": {
+          "type": "page-content",
+          "settings": {},
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "heading",
+        "page-content"
+      ],
+      "disabled": true,
+      "settings": {
+        "content_direction": "column",
+        "gap": 32,
+        "color_scheme": "",
+        "padding-block-start": 40,
+        "padding-block-end": 80
+      }
+    },
+    "hero_FgKniC": {
+      "type": "hero",
+      "blocks": {
+        "text_WWLraQ": {
+          "type": "text",
+          "settings": {
+            "text": "<h2>118 years of precision, 66 years of your home</h2>",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#000000",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_ggcRit": {
+          "type": "text",
+          "settings": {
+            "text": "<p>From India's oldest pharmaceutical group to the heart of your kitchen, we create glassware designed for generations. Rooted in science, crafted for life.</p>",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#ffffff",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 32,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "button_t8ttAR": {
+          "type": "button",
+          "name": "t:names.button",
+          "settings": {
+            "label": "Explore Our Collection",
+            "link": "shopify://collections/all",
+            "open_in_new_tab": false,
+            "style_class": "button-secondary",
+            "width": "fit-content",
+            "custom_width": 100,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_WWLraQ",
+        "text_ggcRit",
+        "button_t8ttAR"
+      ],
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/glass_Effect.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#0b060626",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "blurred_reflection": true,
+        "reflection_opacity": 75,
+        "padding-block-start": 100,
+        "padding-block-end": 41
+      }
+    },
+    "image_with_features_NDWCQn": {
+      "type": "image-with-features",
+      "blocks": {
+        "feature_MHiieD": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 48 48\" fill=\"none\">\n  <path d=\"M15.5077 40.8925H32.4927V34.65C32.4927 32.282 31.6693 30.2829 30.0227 28.6525C28.3757 27.0225 26.3682 26.2075 24.0002 26.2075C21.6322 26.2075 19.6247 27.0225 17.9777 28.6525C16.331 30.2829 15.5077 32.282 15.5077 34.65V40.8925ZM24.0002 21.7925C26.3682 21.7925 28.3757 20.9692 30.0227 19.3225C31.6693 17.6755 32.4927 15.668 32.4927 13.3V7.10753H15.5077V13.3C15.5077 15.668 16.331 17.6755 17.9777 19.3225C19.6247 20.9692 21.6322 21.7925 24.0002 21.7925ZM9.40467 44.299C8.92367 44.299 8.5195 44.1345 8.19217 43.8055C7.86484 43.4765 7.70117 43.0704 7.70117 42.587C7.70117 42.1037 7.86484 41.7004 8.19217 41.377C8.5195 41.054 8.92367 40.8925 9.40467 40.8925H12.1012V34.654C12.1012 32.3087 12.75 30.1734 14.0477 28.248C15.345 26.3227 17.0697 24.9067 19.2217 24C17.0697 23.06 15.345 21.6274 14.0477 19.702C12.75 17.7767 12.1012 15.6414 12.1012 13.296V7.10753H9.40467C8.92367 7.10753 8.5195 6.94303 8.19217 6.61403C7.86484 6.28503 7.70117 5.87919 7.70117 5.39652C7.70117 4.91386 7.86484 4.50869 8.19217 4.18102C8.5195 3.85302 8.92367 3.68903 9.40467 3.68903H38.5957C39.0757 3.68903 39.4815 3.85586 39.8132 4.18952C40.1452 4.52352 40.3112 4.93169 40.3112 5.41403C40.3112 5.89669 40.1452 6.29969 39.8132 6.62303C39.4815 6.94603 39.0757 7.10753 38.5957 7.10753H35.9112V13.296C35.9112 15.6414 35.2623 17.7767 33.9647 19.702C32.6673 21.6274 30.9425 23.06 28.7902 24C30.9425 24.9067 32.6673 26.3227 33.9647 28.248C35.2623 30.1734 35.9112 32.3087 35.9112 34.654V40.8925H38.5957C39.0757 40.8925 39.4815 41.057 39.8132 41.386C40.1452 41.715 40.3112 42.1212 40.3112 42.6045C40.3112 43.0879 40.1452 43.491 39.8132 43.814C39.4815 44.1374 39.0757 44.299 38.5957 44.299H9.40467Z\" fill=\"#204499\"></path>\n</svg>",
+            "title": "Unparalleled Quality",
+            "text": "Here at YERA, we value quality beyond everything else. Using cutting-edge technology and only the highest quality materials, every piece is hand-made with love & care.",
+            "link": "",
+            "link_label": "Learn"
+          }
+        },
+        "feature_7qNGfR": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 48 48\" fill=\"none\">\n  <path d=\"M22.0716 22.9269L15.9716 39.7034L15.7981 40.0009L14.5001 41.2369C14.2348 41.4943 13.9444 41.5599 13.6291 41.4339C13.3138 41.3083 13.1236 41.0726 13.0586 40.7269L12.8086 39.0554C12.8086 39.0808 12.8253 38.9481 12.8586 38.6574L19.1706 21.3074C19.5693 21.7221 20.0174 22.0559 20.5151 22.3089C21.0131 22.5623 21.5319 22.7683 22.0716 22.9269ZM24.0001 22.2034C22.2818 22.2034 20.8183 21.5991 19.6096 20.3904C18.4009 19.1818 17.7966 17.7183 17.7966 15.9999C17.7966 14.5523 18.2149 13.2728 19.0516 12.1614C19.8883 11.0501 20.9939 10.3349 22.3686 10.0159V7.36844C22.3686 6.90077 22.5234 6.51194 22.8331 6.20194C23.1424 5.89194 23.5306 5.73694 23.9976 5.73694C24.4646 5.73694 24.8536 5.89194 25.1646 6.20194C25.4759 6.51194 25.6316 6.90077 25.6316 7.36844V10.0159C27.0063 10.3349 28.1119 11.0501 28.9486 12.1614C29.7853 13.2728 30.2036 14.5523 30.2036 15.9999C30.2036 17.7183 29.5993 19.1818 28.3906 20.3904C27.1819 21.5991 25.7184 22.2034 24.0001 22.2034ZM24.0016 18.9284C24.8099 18.9284 25.4998 18.6423 26.0711 18.0699C26.6428 17.4976 26.9286 16.8071 26.9286 15.9984C26.9286 15.1901 26.6424 14.5003 26.0701 13.9289C25.4978 13.3573 24.8073 13.0714 23.9986 13.0714C23.1903 13.0714 22.5004 13.3576 21.9291 13.9299C21.3574 14.5023 21.0716 15.1928 21.0716 16.0014C21.0716 16.8098 21.3578 17.4996 21.9301 18.0709C22.5024 18.6426 23.1929 18.9284 24.0016 18.9284ZM25.8286 22.9769C26.3683 22.8183 26.8954 22.6123 27.4101 22.3589C27.9244 22.1059 28.3809 21.7721 28.7796 21.3574L35.1416 38.6574C35.2083 38.7908 35.2083 38.9234 35.1416 39.0554L34.9416 40.7269C34.8766 41.0726 34.6864 41.3083 34.3711 41.4339C34.0558 41.5599 33.7654 41.4943 33.5001 41.2369L32.2021 40.0009C32.0864 39.8849 32.0286 39.7858 32.0286 39.7034L25.8286 22.9769Z\" fill=\"#204499\"></path>\n</svg>",
+            "title": "Innovative Designs",
+            "text": "We believe that glassware should be as stylish as it is functional. Our design team continuously works on developing appealing products that meet the changing needs of our customers while staying true to our roots.",
+            "link": "",
+            "link_label": "Learn"
+          }
+        },
+        "feature_4LzWag": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 48 48\" fill=\"none\">\n  <path d=\"M9.10767 42.299C8.18767 42.299 7.39001 41.9611 6.71467 41.2855C6.03901 40.6101 5.70117 39.8125 5.70117 38.8925V9.10746C5.70117 8.18413 6.03901 7.38363 6.71467 6.70596C7.39001 6.02796 8.18767 5.68896 9.10767 5.68896H38.8927C39.816 5.68896 40.6165 6.02796 41.2942 6.70596C41.9722 7.38363 42.3112 8.18413 42.3112 9.10746V38.8925C42.3112 39.8125 41.9722 40.6101 41.2942 41.2855C40.6165 41.9611 39.816 42.299 38.8927 42.299H9.10767ZM22.2967 29.751H9.10767V38.8925H22.2967V29.751ZM25.7037 29.751V38.8925H38.8927V29.751H25.7037ZM22.2967 26.3325V17.1915H9.10767V26.3325H22.2967ZM25.7037 26.3325H38.8927V17.1915H25.7037V26.3325ZM9.10767 13.785H38.8927V9.10746H9.10767V13.785Z\" fill=\"#204499\"></path>\n</svg>",
+            "title": "Environmental friendliness",
+            "text": "YERA uses only environmentally friendly processes in their production. Our procedures are designed to reduce environmental impact, and our materials are 100% recyclable.",
+            "link": "",
+            "link_label": "Learn"
+          }
+        },
+        "feature_AwcxFk": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 48 48\" fill=\"none\">\n  <path d=\"M9.10767 42.299C8.18767 42.299 7.39001 41.9611 6.71467 41.2855C6.03901 40.6101 5.70117 39.8125 5.70117 38.8925V9.10746C5.70117 8.18413 6.03901 7.38363 6.71467 6.70596C7.39001 6.02796 8.18767 5.68896 9.10767 5.68896H38.8927C39.816 5.68896 40.6165 6.02796 41.2942 6.70596C41.9722 7.38363 42.3112 8.18413 42.3112 9.10746V38.8925C42.3112 39.8125 41.9722 40.6101 41.2942 41.2855C40.6165 41.9611 39.816 42.299 38.8927 42.299H9.10767ZM22.2967 29.751H9.10767V38.8925H22.2967V29.751ZM25.7037 29.751V38.8925H38.8927V29.751H25.7037ZM22.2967 26.3325V17.1915H9.10767V26.3325H22.2967ZM25.7037 26.3325H38.8927V17.1915H25.7037V26.3325ZM9.10767 13.785H38.8927V9.10746H9.10767V13.785Z\" fill=\"#204499\"></path>\n</svg>",
+            "title": "Diverse Product Choices",
+            "text": "From everyday essentials to premium collections, YERA offers a wide range of products that cater to every need and budget. Whether you're shopping for your home or looking for the perfect gift, you'll find it at YERA.",
+            "link": "",
+            "link_label": "Learn"
+          }
+        },
+        "feature_E4XmVq": {
+          "type": "feature",
+          "settings": {
+            "icon": "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"48\" height=\"48\" viewbox=\"0 0 48 48\" fill=\"none\">\n  <path d=\"M9.10767 42.299C8.18767 42.299 7.39001 41.9611 6.71467 41.2855C6.03901 40.6101 5.70117 39.8125 5.70117 38.8925V9.10746C5.70117 8.18413 6.03901 7.38363 6.71467 6.70596C7.39001 6.02796 8.18767 5.68896 9.10767 5.68896H38.8927C39.816 5.68896 40.6165 6.02796 41.2942 6.70596C41.9722 7.38363 42.3112 8.18413 42.3112 9.10746V38.8925C42.3112 39.8125 41.9722 40.6101 41.2942 41.2855C40.6165 41.9611 39.816 42.299 38.8927 42.299H9.10767ZM22.2967 29.751H9.10767V38.8925H22.2967V29.751ZM25.7037 29.751V38.8925H38.8927V29.751H25.7037ZM22.2967 26.3325V17.1915H9.10767V26.3325H22.2967ZM25.7037 26.3325H38.8927V17.1915H25.7037V26.3325ZM9.10767 13.785H38.8927V9.10746H9.10767V13.785Z\" fill=\"#204499\"></path>\n</svg>",
+            "title": "Trusted Brand",
+            "text": "YERA has been around for more than 60 years, which is why millions of people worldwide trust us. Our commitment to excellence has made us a household name, and we continue to strive for excellence",
+            "link": "",
+            "link_label": "Learn"
+          }
+        }
+      },
+      "block_order": [
+        "feature_MHiieD",
+        "feature_7qNGfR",
+        "feature_4LzWag",
+        "feature_AwcxFk",
+        "feature_E4XmVq"
+      ],
+      "name": "Image with Features",
+      "settings": {
+        "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png",
+        "heading": ""
+      }
+    },
+    "timeline_history_9ANtWV": {
+      "type": "timeline-history",
+      "blocks": {
+        "year_3n7GLT": {
+          "type": "year",
+          "settings": {
+            "year": "1943",
+            "title": "Our Beginnings",
+            "subtitle": "YERA's Start",
+            "subtitle2": "",
+            "text": "<p>Alembic Glass was started during the Second World War for the manufacture of glass bottles to tide over wartime shortages.</p>",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_D8pJAf": {
+          "type": "year",
+          "settings": {
+            "year": "1948",
+            "title": "",
+            "subtitle": "The first automatic manufacturing plant for glass bottles and pharmaceutical vials.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_6Ka4Ec": {
+          "type": "year",
+          "settings": {
+            "year": "1955",
+            "title": "",
+            "subtitle": "The first glassware decorating plant for branding of consumer products.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_iyJhaK": {
+          "type": "year",
+          "settings": {
+            "year": "1957",
+            "title": "",
+            "subtitle": "The first automatic pressed glassware plant for drinkware.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_hdeDP4": {
+          "type": "year",
+          "settings": {
+            "year": "1958",
+            "title": "",
+            "subtitle": "The launch of Indias largest glassware brand YERA.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_nhmPdb": {
+          "type": "year",
+          "settings": {
+            "year": "1962",
+            "title": "",
+            "subtitle": "Alembic Glass started manufacturing the “Yera” brand of high quality premium tableware on imported press machines that were adapted to suit the product range.",
+            "subtitle2": "Introduction of heat-resistant opal glassware for kitchenware and tableware.",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_KLwqJR": {
+          "type": "year",
+          "settings": {
+            "year": "1963",
+            "title": "",
+            "subtitle": "Introduction of high voltage glass insulators and architectural glass blocks.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_XNDCdr": {
+          "type": "year",
+          "settings": {
+            "year": "1970",
+            "title": "",
+            "subtitle": "Introduction of lead crystal glassware products.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_bKRLJD": {
+          "type": "year",
+          "settings": {
+            "year": "2007",
+            "title": "",
+            "subtitle": "Introduction of blown drink ware products.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_Tabckt": {
+          "type": "year",
+          "settings": {
+            "year": "2008",
+            "title": "",
+            "subtitle": "Launch of Platina brand.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_NK4h3Y": {
+          "type": "year",
+          "settings": {
+            "year": "2012",
+            "title": "",
+            "subtitle": "Launch of YERA INTERNATIONAL brand.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_EEjLfr": {
+          "type": "year",
+          "settings": {
+            "year": "2020",
+            "title": "",
+            "subtitle": "Introduction of Food Grade Color Coated Jars.",
+            "subtitle2": "",
+            "text": "",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_LAGirA": {
+          "type": "year",
+          "disabled": true,
+          "settings": {
+            "year": "1980",
+            "title": "Rewards",
+            "subtitle": "YERA's Start",
+            "subtitle2": "",
+            "text": "<p>Since 1958, YERA has been at the forefront of Indian glassware, revolutionizing storage, serving, and celebrations in homes with groundbreaking innovations every decade.</p>",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_ykack3": {
+          "type": "year",
+          "disabled": true,
+          "settings": {
+            "year": "1990",
+            "title": "Acheivements",
+            "subtitle": "YERA's",
+            "subtitle2": "",
+            "text": "<p>Since 1958, YERA has been at the forefront of Indian glassware, revolutionizing storage, serving, and celebrations in homes with groundbreaking innovations every decade.</p>",
+            "image": "shopify://shop_images/24efd80db8a8d85a6958432332ca6ac8582f62ca.png"
+          }
+        },
+        "year_PqyVGW": {
+          "type": "year",
+          "disabled": true,
+          "settings": {
+            "year": "Today",
+            "title": "Our Beginnings",
+            "subtitle": "",
+            "subtitle2": "",
+            "text": "<p>Since 1958, YERA has been at the forefront of Indian glassware, revolutionizing storage, serving, and celebrations in homes with groundbreaking innovations every decade.</p>",
+            "image": "shopify://shop_images/coffee-s-ready.jpg"
+          }
+        }
+      },
+      "block_order": [
+        "year_3n7GLT",
+        "year_D8pJAf",
+        "year_6Ka4Ec",
+        "year_iyJhaK",
+        "year_hdeDP4",
+        "year_nhmPdb",
+        "year_KLwqJR",
+        "year_XNDCdr",
+        "year_bKRLJD",
+        "year_Tabckt",
+        "year_NK4h3Y",
+        "year_EEjLfr",
+        "year_LAGirA",
+        "year_ykack3",
+        "year_PqyVGW"
+      ],
+      "name": "Timeline history",
+      "settings": {}
+    },
+    "section_tXVAtz": {
+      "type": "section",
+      "blocks": {
+        "image_YmFdRg": {
+          "type": "image",
+          "settings": {
+            "image": "shopify://shop_images/bfa9bd1503bf608b8223bb546a3ec6240dbb660b.png",
+            "link": "",
+            "image_ratio": "square",
+            "width": "fill",
+            "custom_width": 0,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "group_AaFKRU": {
+          "type": "group",
+          "settings": {
+            "content_direction": "column",
+            "vertical_on_mobile": true,
+            "horizontal_alignment": "flex-start",
+            "vertical_alignment": "center",
+            "align_baseline": false,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 13,
+            "width": "custom",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "toggle_overlay": false,
+            "overlay_color": "#00000026",
+            "overlay_style": "solid",
+            "gradient_direction": "to top",
+            "link": "",
+            "open_in_new_tab": false,
+            "placeholder": "",
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 16,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "text_g3Kn8c": {
+              "type": "text",
+              "name": "t:names.text",
+              "settings": {
+                "text": "<p><em><strong>Excellence</strong></em></p>",
+                "show_share_icon_on_pdp": false,
+                "custom_text_color": "#000000",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_wbifpt": {
+              "type": "text",
+              "name": "t:names.heading",
+              "settings": {
+                "text": "<h3>Made in India, trusted globally</h3>",
+                "show_share_icon_on_pdp": false,
+                "custom_text_color": "#000000",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "h4",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "text_UKbMep": {
+              "type": "text",
+              "settings": {
+                "text": "<p>YERA's state-of-the-art manufacturing plant in Kosamba seamlessly blends time-honored glassmaking techniques with cutting-edge technology. Our fully automated pressed glassware production line ensures each piece reflects both tradition and modern precision. We uphold stringent quality control measures at every stage, guaranteeing glassware that meets global standards. </p>",
+                "show_share_icon_on_pdp": false,
+                "custom_text_color": "#000000",
+                "width": "fit-content",
+                "max_width": "narrow",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "image_kpzgdL": {
+              "type": "image",
+              "name": "t:names.image",
+              "settings": {
+                "image": "shopify://shop_images/ed263286fafb24dd879b2c58bb2a7d5c284d634f.png",
+                "link": "",
+                "image_ratio": "adapt",
+                "width": "custom",
+                "custom_width": 30,
+                "width_mobile": "custom",
+                "custom_width_mobile": 31,
+                "height": "fit",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "text_g3Kn8c",
+            "text_wbifpt",
+            "text_UKbMep",
+            "image_kpzgdL"
+          ]
+        }
+      },
+      "block_order": [
+        "image_YmFdRg",
+        "group_AaFKRU"
+      ],
+      "custom_css": [
+        "@media (max-width: 768px) {.group-block-content .image-block {display: block; margin: 0 auto; max-width: 100%; height: auto; }}",
+        ".section-content-wrapper.section-content-wrapper {padding: 40px 20px;}",
+        "@media (max-width: 768px) {.section-wrapper .image-block {order: 2; } .section-wrapper .group-block-content {order: 1; }}",
+        "@media (min-width: 769px) {.layout-panel-flex--row > .image-block {width: 70% !important; flex: 0 0 70%; } .layout-panel-flex--row > .group-block {width: 30% !important; flex: 0 0 30%; }}"
+      ],
+      "name": "t:names.image_with_text",
+      "settings": {
+        "content_direction": "row",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "flex-start",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "full-width",
+        "section_height": "",
+        "section_height_custom": 34,
+        "color_scheme": "",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "product_list_mG3ian": {
+      "type": "product-list",
+      "blocks": {
+        "static-header": {
+          "type": "_product-list-content",
+          "name": "t:names.header",
+          "static": true,
+          "settings": {
+            "content_direction": "row",
+            "vertical_on_mobile": false,
+            "horizontal_alignment": "space-between",
+            "vertical_alignment": "flex-end",
+            "align_baseline": true,
+            "horizontal_alignment_flex_direction_column": "flex-start",
+            "vertical_alignment_flex_direction_column": "center",
+            "gap": 12,
+            "width": "fill",
+            "custom_width": 100,
+            "width_mobile": "fill",
+            "custom_width_mobile": 100,
+            "height": "fit",
+            "custom_height": 100,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "background_media": "none",
+            "video_position": "cover",
+            "background_image_position": "cover",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_list_text_LXr3Bn": {
+              "type": "_product-list-text",
+              "name": "t:names.collection_title",
+              "settings": {
+                "text": "<h3>{{ closest.collection.title }}</h3>",
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_list_button_mBFCXy": {
+              "type": "_product-list-button",
+              "name": "t:names.product_list_button",
+              "settings": {
+                "label": "View all",
+                "open_in_new_tab": false,
+                "style_class": "link",
+                "width": "fit-content",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_list_text_LXr3Bn",
+            "product_list_button_mBFCXy"
+          ]
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_zR34cn": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_WPAgpy": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_L7UHrV": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_zR34cn",
+            "product_title_WPAgpy",
+            "price_L7UHrV"
+          ]
+        }
+      },
+      "name": "t:names.products_carousel",
+      "settings": {
+        "collection": "kitchenware",
+        "layout_type": "carousel",
+        "carousel_on_mobile": false,
+        "max_products": 6,
+        "columns": 4,
+        "mobile_columns": "2",
+        "mobile_card_size": "60cqw",
+        "columns_gap": 8,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "circle",
+        "section_width": "page-width",
+        "horizontal_alignment": "flex-start",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48,
+        "promo_position": "none",
+        "promo_between_index": 2,
+        "promo_heading": "",
+        "promo_text": "",
+        "promo_button_label": "",
+        "promo_link": "",
+        "after_promo_heading": "",
+        "after_promo_text": "",
+        "after_promo_button_label": "",
+        "after_promo_link": ""
+      }
+    },
+    "section_AmjB3y": {
+      "type": "section",
+      "blocks": {
+        "contact_form_fjBRRN": {
+          "type": "contact-form",
+          "settings": {
+            "heading": "Contact us",
+            "text": "",
+            "width": "fit-content",
+            "custom_width": 49,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7",
+            "padding-block-start": 55,
+            "padding-block-end": 55,
+            "padding-inline-start": 56,
+            "padding-inline-end": 55
+          },
+          "blocks": {
+            "submit-button": {
+              "type": "contact-form-submit-button",
+              "static": true,
+              "settings": {
+                "label": "Request call back...",
+                "style_class": "button",
+                "width": "custom",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "block_order": [
+        "contact_form_fjBRRN"
+      ],
+      "custom_css": [
+        ".contact-form__heading,.contact-form__text {text-align: center;}",
+        ".contact-form__heading {margin: 0px !important; padding-bottom: 10px; font-family: \"Boska Variable\"; font-size: 42px; font-style: normal; font-weight: 700; line-height: normal; letter-spacing: 1.68px;}"
+      ],
+      "name": "t:names.contact_form",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    }
+  },
+  "order": [
+    "main",
+    "hero_FgKniC",
+    "image_with_features_NDWCQn",
+    "timeline_history_9ANtWV",
+    "section_tXVAtz",
+    "product_list_mG3ian",
+    "section_AmjB3y"
+  ]
+}

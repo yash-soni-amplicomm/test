@@ -1,0 +1,743 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "section": {
+      "type": "section",
+      "blocks": {
+        "text_tqQTNE": {
+          "type": "text",
+          "name": "Title",
+          "settings": {
+            "text": "<h1>{{ closest.collection.title }}</h1>",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#000000",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "h2",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_twGGkJ": {
+          "type": "text",
+          "name": "Description",
+          "settings": {
+            "text": "{{ closest.collection.description }}",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#000000",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-primary--family)",
+            "font_size": "",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_tqQTNE",
+        "text_twGGkJ"
+      ],
+      "disabled": true,
+      "name": "Collection heading",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-1",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "collection_top_banner_w8YzcD": {
+      "type": "collection-top-banner",
+      "name": "Custom Collection Banner",
+      "settings": {
+        "banner_height_desktop": 500,
+        "banner_height_mobile": 300,
+        "title_color": "#ffffff",
+        "title_font_size": 42,
+        "show_description": true,
+        "desc_color": "#ffffff",
+        "desc_font_size": 16,
+        "overlay_color": "#000000",
+        "overlay_opacity": 0.6,
+        "text_alignment": "center",
+        "margin_top": 0,
+        "margin_bottom": 20,
+        "padding_top": 0,
+        "padding_bottom": 0
+      }
+    },
+    "hero_fjP93r": {
+      "type": "hero",
+      "blocks": {
+        "text_hGkAfj": {
+          "type": "text",
+          "settings": {
+            "text": "<h1>All</h1>",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#000000",
+            "width": "fit-content",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "h1",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "text_NHd68U": {
+          "type": "text",
+          "settings": {
+            "text": "<p>Handpicked glassware that lasts generations Designed for You. Made in India since 1958.</p>",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#ffffff",
+            "width": "100%",
+            "max_width": "narrow",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 32,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "text_hGkAfj",
+        "text_NHd68U"
+      ],
+      "disabled": true,
+      "name": "t:names.hero",
+      "settings": {
+        "media_type_1": "image",
+        "image_1": "shopify://shop_images/glass_Effect.png",
+        "media_type_2": "image",
+        "stack_media_on_mobile": false,
+        "custom_mobile_media": false,
+        "media_type_1_mobile": "image",
+        "image_1_mobile": "shopify://shop_images/bfa9bd1503bf608b8223bb546a3ec6240dbb660b.png",
+        "media_type_2_mobile": "image",
+        "link": "",
+        "open_in_new_tab": false,
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 16,
+        "section_width": "page-width",
+        "section_height": "large",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-5",
+        "toggle_overlay": true,
+        "overlay_color": "#00000026",
+        "overlay_style": "gradient",
+        "gradient_direction": "to top",
+        "blurred_reflection": false,
+        "reflection_opacity": 75,
+        "padding-block-start": 40,
+        "padding-block-end": 40
+      }
+    },
+    "meta-banner": {
+      "type": "collection-banner",
+      "disabled": true,
+      "settings": {}
+    },
+    "main": {
+      "type": "main-collection",
+      "blocks": {
+        "filters": {
+          "type": "filters",
+          "static": true,
+          "settings": {
+            "enable_filtering": true,
+            "filter_style": "horizontal",
+            "filter_width": "centered",
+            "text_label_case": "default",
+            "show_swatch_label": true,
+            "show_filter_label": true,
+            "enable_sorting": true,
+            "enable_grid_density": false,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "padding-block-start": 8,
+            "padding-block-end": 8,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0,
+            "facets_margin_bottom": 8,
+            "facets_margin_right": 20
+          },
+          "blocks": {}
+        },
+        "product-card": {
+          "type": "_product-card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "card-gallery": {
+              "type": "_product-card-gallery",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_4nY4eT": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "100%",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_EzJzMm": {
+              "type": "price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "card-gallery",
+            "product_title_4nY4eT",
+            "price_EzJzMm"
+          ]
+        }
+      },
+      "settings": {
+        "layout_type": "grid",
+        "product_card_size": "medium",
+        "mobile_product_card_size": "small",
+        "enable_infinite_scroll": true,
+        "products_per_page": 24,
+        "product_grid_width": "centered",
+        "full_width_on_mobile": true,
+        "columns_gap_horizontal": 16,
+        "columns_gap_vertical": 24,
+        "padding-inline-start": 0,
+        "padding-inline-end": 0,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 0,
+        "padding-block-end": 32
+      }
+    },
+    "testimonial_xRhNPp": {
+      "type": "testimonial",
+      "blocks": {
+        "testimonial_iypEHP": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've tried every brand... survived 3 years without a single chip.",
+            "author-info-brand": "Oak Collection",
+            "name": "Meera Sharma",
+            "location": "Pune, Suhana",
+            "author_image": "shopify://shop_images/FMOCTJR1150_12.webp",
+            "image": "shopify://shop_images/background-image.png"
+          }
+        },
+        "testimonial_4eTGTz": {
+          "type": "testimonial",
+          "settings": {
+            "quote": "I've tried every brand... survived 3 years without a single chip.",
+            "author-info-brand": "Oak Collection",
+            "name": "Sharma",
+            "location": "Pune, Suhana",
+            "author_image": "shopify://shop_images/FMOCTJR1150_12.webp",
+            "image": "shopify://shop_images/c0e63c55e249dd8ea9bf0dead557542dcb738476.png"
+          }
+        }
+      },
+      "block_order": [
+        "testimonial_iypEHP",
+        "testimonial_4eTGTz"
+      ],
+      "custom_css": [],
+      "name": "Testimonial carousel",
+      "settings": {
+        "color_scheme": "",
+        "autoplay": true,
+        "autoplay_speed": 5
+      }
+    },
+    "product_recommendations_H4zXja": {
+      "type": "product-recommendations",
+      "blocks": {
+        "text_aVnX9z": {
+          "type": "text",
+          "name": "t:names.header",
+          "settings": {
+            "text": "<h3>Related products</h3>",
+            "show_share_icon_on_pdp": false,
+            "custom_text_color": "#000000",
+            "width": "fit-content",
+            "max_width": "normal",
+            "alignment": "left",
+            "type_preset": "rte",
+            "font": "var(--font-body--family)",
+            "font_size": "1rem",
+            "line_height": "normal",
+            "letter_spacing": "normal",
+            "case": "none",
+            "wrap": "pretty",
+            "color": "var(--color-foreground)",
+            "background": false,
+            "background_color": "#00000026",
+            "corner_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {}
+        },
+        "static-product-card": {
+          "type": "_product-card",
+          "name": "t:names.product_card",
+          "static": true,
+          "settings": {
+            "product_card_gap": 4,
+            "inherit_color_scheme": true,
+            "color_scheme": "",
+            "border": "none",
+            "border_width": 1,
+            "border_opacity": 100,
+            "border_radius": 0,
+            "padding-block-start": 0,
+            "padding-block-end": 0,
+            "padding-inline-start": 0,
+            "padding-inline-end": 0
+          },
+          "blocks": {
+            "product_card_gallery_WkR9Xx": {
+              "type": "_product-card-gallery",
+              "name": "t:names.product_card_media",
+              "settings": {
+                "image_ratio": "adapt",
+                "border": "none",
+                "border_width": 1,
+                "border_opacity": 100,
+                "border_radius": 0,
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "product_title_UYAjea": {
+              "type": "product-title",
+              "name": "t:names.product_title",
+              "settings": {
+                "width": "fit-content",
+                "max_width": "normal",
+                "alignment": "left",
+                "type_preset": "rte",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "wrap": "pretty",
+                "color": "var(--color-foreground)",
+                "background": false,
+                "background_color": "#00000026",
+                "corner_radius": 0,
+                "padding-block-start": 4,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            },
+            "price_phKntt": {
+              "type": "price",
+              "name": "t:names.product_price",
+              "settings": {
+                "show_sale_price_first": true,
+                "show_installments": false,
+                "show_tax_info": false,
+                "type_preset": "h6",
+                "width": "100%",
+                "alignment": "left",
+                "font": "var(--font-body--family)",
+                "font_size": "1rem",
+                "line_height": "normal",
+                "letter_spacing": "normal",
+                "case": "none",
+                "color": "var(--color-foreground)",
+                "padding-block-start": 0,
+                "padding-block-end": 0,
+                "padding-inline-start": 0,
+                "padding-inline-end": 0
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": [
+            "product_card_gallery_WkR9Xx",
+            "product_title_UYAjea",
+            "price_phKntt"
+          ]
+        }
+      },
+      "block_order": [
+        "text_aVnX9z"
+      ],
+      "name": "t:names.product_recommendations",
+      "settings": {
+        "product": "cock-tail-glass",
+        "recommendation_type": "related",
+        "layout_type": "grid",
+        "carousel_on_mobile": false,
+        "max_products": 4,
+        "columns": 4,
+        "mobile_columns": "2",
+        "columns_gap": 12,
+        "rows_gap": 24,
+        "icons_style": "arrow",
+        "icons_shape": "none",
+        "section_width": "page-width",
+        "gap": 28,
+        "color_scheme": "scheme-1",
+        "padding-block-start": 48,
+        "padding-block-end": 48
+      }
+    },
+    "reels_video_section_geW63f": {
+      "type": "reels-video-section",
+      "blocks": {
+        "reel_zVQF4r": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/Nearby-Store-Video.mp4",
+            "product": "classic-tumbler-set-with-1-jug"
+          }
+        },
+        "reel_HX76nR": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/Nearby-Store-Video.mp4",
+            "product": "coupette-glass"
+          }
+        },
+        "reel_nR8UHP": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/Nearby-Store-Video.mp4",
+            "product": "juice-glass"
+          }
+        },
+        "reel_kEcNBq": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/Nearby-Store-Video.mp4",
+            "product": "kitchen-storage-jar"
+          }
+        },
+        "reel_JfnMyt": {
+          "type": "reel",
+          "settings": {
+            "video": "shopify://files/videos/Nearby-Store-Video.mp4",
+            "product": "kitchen-storage-jar"
+          }
+        }
+      },
+      "block_order": [
+        "reel_zVQF4r",
+        "reel_HX76nR",
+        "reel_nR8UHP",
+        "reel_kEcNBq",
+        "reel_JfnMyt"
+      ],
+      "disabled": true,
+      "name": "Video Reels with Products",
+      "settings": {
+        "heading": "Yera World",
+        "heading_size": 42,
+        "subheading": "See it in action, shop with confidence",
+        "subheading_size": 14
+      }
+    },
+    "blocks_i3FPdY": {
+      "type": "_blocks",
+      "blocks": {
+        "ai_gen_block_ca46582_UhrhGM": {
+          "type": "ai_gen_block_ca46582",
+          "settings": {
+            "desktop_columns": 5,
+            "mobile_columns": "2",
+            "gap": 30,
+            "padding_vertical": 40,
+            "autoplay_speed": 3000,
+            "icon_size": 50,
+            "text_size": 14,
+            "text_weight": 400,
+            "text_color": "#000000",
+            "background_color": "#e6d6bb",
+            "icon_1": "shopify://shop_images/66.png",
+            "text_1": "Years of Craftsmanship",
+            "icon_2": "shopify://shop_images/diamond-part-2_svgrepo.com.png",
+            "text_2": "Food Safe",
+            "icon_3": "shopify://shop_images/Sustainability_approved.png",
+            "text_3": "Sustainable",
+            "icon_4": "shopify://shop_images/Frame_254_1.png",
+            "text_4": "Made In India",
+            "icon_5": "shopify://shop_images/glass-of-wine-svgrepo-com_1.png",
+            "text_5": "Form & Function",
+            "text_6": ""
+          },
+          "blocks": {}
+        }
+      },
+      "block_order": [
+        "ai_gen_block_ca46582_UhrhGM"
+      ],
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "flex-start",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 12,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 0,
+        "padding-block-end": 0
+      }
+    },
+    "section_qYAKjV": {
+      "type": "section",
+      "blocks": {
+        "contact_form_KkKtVP": {
+          "type": "contact-form",
+          "settings": {
+            "heading": "Contact us",
+            "text": "",
+            "width": "fit-content",
+            "custom_width": 49,
+            "width_mobile": "fit-content",
+            "custom_width_mobile": 100,
+            "inherit_color_scheme": false,
+            "color_scheme": "scheme-58084d4c-a86e-4d0a-855e-a0966e5043f7",
+            "padding-block-start": 55,
+            "padding-block-end": 55,
+            "padding-inline-start": 56,
+            "padding-inline-end": 55
+          },
+          "blocks": {
+            "submit-button": {
+              "type": "contact-form-submit-button",
+              "static": true,
+              "settings": {
+                "label": "Request call back...",
+                "style_class": "button",
+                "width": "custom",
+                "custom_width": 100,
+                "width_mobile": "fit-content",
+                "custom_width_mobile": 100
+              },
+              "blocks": {}
+            }
+          },
+          "block_order": []
+        }
+      },
+      "block_order": [
+        "contact_form_KkKtVP"
+      ],
+      "custom_css": [
+        ".contact-form__heading,.contact-form__text {text-align: center;}",
+        ".contact-form__heading {margin: 0px !important; padding-bottom: 10px; font-family: \"Boska Variable\"; font-size: 42px; font-style: normal; font-weight: 700; line-height: normal; letter-spacing: 1.68px;}"
+      ],
+      "name": "t:names.contact_form",
+      "settings": {
+        "content_direction": "column",
+        "vertical_on_mobile": true,
+        "horizontal_alignment": "flex-start",
+        "vertical_alignment": "center",
+        "align_baseline": false,
+        "horizontal_alignment_flex_direction_column": "center",
+        "vertical_alignment_flex_direction_column": "center",
+        "gap": 32,
+        "section_width": "page-width",
+        "section_height": "",
+        "section_height_custom": 50,
+        "color_scheme": "scheme-6",
+        "background_media": "none",
+        "video_position": "cover",
+        "background_image_position": "cover",
+        "border": "none",
+        "border_width": 1,
+        "border_opacity": 100,
+        "border_radius": 0,
+        "toggle_overlay": false,
+        "overlay_color": "#00000026",
+        "overlay_style": "solid",
+        "gradient_direction": "to top",
+        "padding-block-start": 32,
+        "padding-block-end": 32
+      }
+    }
+  },
+  "order": [
+    "section",
+    "collection_top_banner_w8YzcD",
+    "hero_fjP93r",
+    "meta-banner",
+    "main",
+    "testimonial_xRhNPp",
+    "product_recommendations_H4zXja",
+    "reels_video_section_geW63f",
+    "blocks_i3FPdY",
+    "section_qYAKjV"
+  ]
+}

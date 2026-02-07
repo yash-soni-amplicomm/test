@@ -1,0 +1,353 @@
+{% if section.blocks.size > 1 %}
+  <script
+    src="{{ 'announcement-bar.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+{% endif %}
+
+<div class="section-background color-{{ section.settings.color_scheme }}"></div>
+<aside
+  class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;"
+>
+  {% liquid
+    assign autoplay = false
+    assign show_arrows = false
+    if section.blocks.size > 1
+      assign autoplay = true
+      assign show_arrows = true
+    endif
+  %}
+
+  <div class="announcement-bar__wrapper">
+    <announcement-bar-component
+      class="announcement-bar__slider"
+      {% if autoplay == true %}
+        autoplay="{{ section.settings.speed }}" aria-live="polite"
+      {% endif %}
+    >
+      {% if show_arrows %}
+        {% render 'slideshow-arrows', icon_style: 'chevron' %}
+      {% endif %}
+
+      <div class="announcement-bar__slides">
+        {% content_for 'blocks' %}
+      </div>
+    </announcement-bar-component>
+
+    {% if section.settings.show_distributor_button %}
+      <div class="announcement-bar__distributor">
+        <a 
+          href="{{ section.settings.distributor_link }}" 
+          class="announcement-bar__distributor-button"
+        >
+          {% if section.settings.logo != blank %}
+            <img 
+              src="{{ section.settings.logo | image_url }}" 
+              alt="{{ section.settings.logo.alt | default: 'Distributor' }}"
+              loading="lazy"
+              style="width: {{ section.settings.logo_width }}px; height: auto;"
+              class="announcement-bar__distributor-logo"
+            >
+          {% endif %}
+          <span class="announcement-bar__distributor-text">
+            {{ section.settings.distributor_button_text }}
+          </span>
+        </a>
+      </div>
+    {% endif %}
+  </div>
+</aside>
+
+{% stylesheet %}
+  .announcement-bar {
+    border-block-end: var(--border-bottom-width) solid var(--color-border);
+  }
+
+  @media(max-width:1024px){
+    .announcement-bar{
+      display:none;
+    }
+  }
+
+  .announcement-bar__wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: var(--gap-lg);
+  }
+
+  .announcement-bar__slider {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    min-width: 0;
+    justify-content: flex-start;
+
+    @media screen and (max-width: 749px) {
+      grid-column: 1 / -1;
+    }
+  }
+
+  .announcement-bar__slides {
+    display: grid;
+    grid: [stack] auto / [stack] auto;
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+    justify-items: start;
+  }
+
+  .announcement-bar__slides > * {
+    grid-area: stack;
+    width: auto;
+    justify-self: start;
+  }
+
+  .announcement-bar__slide {
+    transition: opacity 0.5s ease-in-out, visibility 0.5s ease-in-out;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    &[aria-hidden='true'] {
+      opacity: 0;
+      visibility: hidden;
+    }
+  }
+
+  .announcement-bar__slider slideshow-arrows {
+    padding: 0;
+    mix-blend-mode: normal;
+  }
+
+  .announcement-bar__slider slideshow-arrows .slideshow-control {
+    color: var(--color-foreground);
+  }
+
+  .announcement-bar__slider .slideshow-control {
+    display: flex;
+    padding: 0;
+    width: var(--button-size);
+    height: var(--button-size);
+    align-items: center;
+    justify-content: center;
+    opacity: 1;
+    animation: none;
+  }
+
+  .announcement-bar__slider .slideshow-control .svg-wrapper {
+    width: var(--icon-size-xs);
+    height: var(--icon-size-xs);
+  }
+
+  .announcement-bar__slide {
+    place-content: flex-start;
+  }
+
+  .announcement-bar__text:first-child {
+    margin: 0;
+    text-align: left;
+  }
+
+  .announcement-bar__link {
+    position: absolute;
+    inset: 0;
+  }
+
+  .announcement-bar__distributor {
+    flex-shrink: 0;
+    margin-left: auto;
+  }
+
+  .announcement-bar__distributor-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 2px 12px;
+    background-color: transparent;
+    color: var(--color-foreground);
+    text-decoration: none;
+    font-size: 13px;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+
+    &:hover {
+      opacity: 0.7;
+    }
+  }
+
+  .announcement-bar__distributor-logo {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  .announcement-bar__distributor-icon {
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-md);
+  }
+
+  .announcement-bar__distributor-text {
+    font-weight: 400;
+    font-size: 13px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .announcement-bar__wrapper {
+      flex-wrap: wrap;
+      gap: var(--gap-sm);
+    }
+
+    .announcement-bar__slider {
+      width: 100%;
+    }
+
+    .announcement-bar__distributor {
+      width: 100%;
+      text-align: center;
+    }
+
+    .announcement-bar__distributor-button {
+      width: 100%;
+      justify-content: center;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "t:names.announcement_bar",
+  "blocks": [
+    {
+      "type": "_announcement"
+    }
+  ],
+  "enabled_on": {
+    "groups": ["header"]
+  },
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Announcement Bar Logo",
+      "info": "Upload your SVG or image logo"
+    },
+    {
+      "type": "range",
+      "id": "logo_width",
+      "label": "Logo width",
+      "min": 12,
+      "max": 40,
+      "step": 2,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "speed",
+      "label": "t:settings.scroll_speed",
+      "min": 2,
+      "max": 10,
+      "default": 5,
+      "unit": "sec"
+    },
+    {
+      "type": "header",
+      "content": "Distributor Locator Button"
+    },
+    {
+      "type": "checkbox",
+      "id": "show_distributor_button",
+      "label": "Show distributor locator button",
+      "default": true
+    },
+    {
+      "type": "text",
+      "id": "distributor_button_text",
+      "label": "Button text",
+      "default": "Distributor Locator"
+    },
+    {
+      "type": "url",
+      "id": "distributor_link",
+      "label": "Distributor page link"
+    },
+    {
+      "type": "header",
+      "content": "t:content.appearance"
+    },
+    {
+      "type": "select",
+      "id": "section_width",
+      "label": "t:settings.section_width",
+      "options": [
+        {
+          "value": "page-width",
+          "label": "t:options.page"
+        },
+        {
+          "value": "full-width",
+          "label": "t:options.full"
+        }
+      ],
+      "default": "page-width"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "default": "scheme-4",
+      "label": "t:settings.color_scheme"
+    },
+    {
+      "type": "range",
+      "id": "divider_width",
+      "label": "t:settings.divider_thickness",
+      "min": 0,
+      "max": 5,
+      "step": 0.5,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "t:content.padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "t:settings.top",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "t:settings.bottom",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "default": 15
+    }
+  ],
+  "presets": [
+    {
+      "name": "t:names.announcement_bar",
+      "blocks": {
+        "announcement_1": {
+          "type": "_announcement"
+        }
+      },
+      "block_order": ["announcement_1"]
+    }
+  ]
+}
+{% endschema %}

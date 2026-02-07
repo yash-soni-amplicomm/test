@@ -1,0 +1,198 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "reels-section-prima": {
+      "type": "reels-section-prima",
+      "blocks": {
+        "slide_VxP6Gc": {
+          "type": "slide",
+          "disabled": true,
+          "settings": {
+            "image": "shopify://shop_images/resaf2fadd287eaa34dfae70b7d81c1c7b4fr.jpg",
+            "heading": "",
+            "text": "",
+            "content_position": "bottom-left",
+            "text_align": "left",
+            "content_x": 8,
+            "content_y": 15,
+            "heading_color": "#ffffff",
+            "heading_size_desktop": 42,
+            "heading_size_mobile": 28,
+            "text_color": "#ffffff",
+            "text_size_desktop": 16,
+            "text_size_mobile": 14,
+            "button_label": "",
+            "button_style": "rounded",
+            "button_radius": 6,
+            "button_blur": 10,
+            "button_link": "",
+            "button_bg": "#ffffff",
+            "button_text": "#000000",
+            "button_bg_hover": "#ffffff",
+            "button_text_hover": "#000000"
+          }
+        },
+        "slide_KwTFCw": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/6d71beef056310af9c90da8e9314a3e0a6c65960.png",
+            "mobile_image": "shopify://shop_images/banner_img_2.png",
+            "heading": "OAK",
+            "text": "Tubler Range",
+            "content_position": "bottom-center",
+            "text_align": "center",
+            "content_x": 10,
+            "content_y": 30,
+            "heading_color": "#ffffff",
+            "heading_size_desktop": 95,
+            "heading_size_mobile": 50,
+            "text_color": "#ffffff",
+            "text_size_desktop": 20,
+            "text_size_mobile": 20,
+            "button_label": "Explore Range",
+            "button_style": "outline",
+            "button_radius": 6,
+            "button_blur": 10,
+            "button_link": "shopify://collections/aqua",
+            "button_bg": "#ffffff",
+            "button_text": "#ffffff",
+            "button_bg_hover": "#ed0404",
+            "button_text_hover": "#000000"
+          }
+        },
+        "slide_33R9Wm": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/4703f35665453bbb02bd366bf38385fb4447d86b.png",
+            "mobile_image": "shopify://shop_images/Slider.png",
+            "heading": "AQUA",
+            "text": "Tubler Range",
+            "content_position": "bottom-center",
+            "text_align": "center",
+            "content_x": 8,
+            "content_y": 30,
+            "heading_color": "#ffffff",
+            "heading_size_desktop": 95,
+            "heading_size_mobile": 50,
+            "text_color": "#ffffff",
+            "text_size_desktop": 20,
+            "text_size_mobile": 20,
+            "button_label": "Explore Range",
+            "button_style": "outline",
+            "button_radius": 6,
+            "button_blur": 10,
+            "button_link": "shopify://collections/aqua",
+            "button_bg": "#ffffff",
+            "button_text": "#ffffff",
+            "button_bg_hover": "#ed0404",
+            "button_text_hover": "#000000"
+          }
+        },
+        "slide_pTjDe3": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/135013da86899a2463f2c209a6f2d54f28724c4d.png",
+            "mobile_image": "shopify://shop_images/banner_img_4.png",
+            "heading": "ZEST",
+            "text": "Tubler Range",
+            "content_position": "bottom-center",
+            "text_align": "center",
+            "content_x": 8,
+            "content_y": 30,
+            "heading_color": "#ffffff",
+            "heading_size_desktop": 95,
+            "heading_size_mobile": 50,
+            "text_color": "#ffffff",
+            "text_size_desktop": 20,
+            "text_size_mobile": 20,
+            "button_label": "Explore Range",
+            "button_style": "outline",
+            "button_radius": 6,
+            "button_blur": 10,
+            "button_link": "shopify://collections/aqua",
+            "button_bg": "#ffffff",
+            "button_text": "#ffffff",
+            "button_bg_hover": "#ed0404",
+            "button_text_hover": "#000000"
+          }
+        },
+        "slide_RU3BhA": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/6d71beef056310af9c90da8e9314a3e0a6c65960.png",
+            "mobile_image": "shopify://shop_images/banner_img_5.png",
+            "heading": "PINT",
+            "text": "Tubler Range",
+            "content_position": "bottom-center",
+            "text_align": "center",
+            "content_x": 8,
+            "content_y": 30,
+            "heading_color": "#ffffff",
+            "heading_size_desktop": 95,
+            "heading_size_mobile": 50,
+            "text_color": "#ffffff",
+            "text_size_desktop": 20,
+            "text_size_mobile": 20,
+            "button_label": "Explore Range",
+            "button_style": "outline",
+            "button_radius": 6,
+            "button_blur": 10,
+            "button_link": "shopify://collections/aqua",
+            "button_bg": "#ffffff",
+            "button_text": "#ffffff",
+            "button_bg_hover": "#ed0404",
+            "button_text_hover": "#000000"
+          }
+        },
+        "slide_dzrmDT": {
+          "type": "slide",
+          "settings": {
+            "image": "shopify://shop_images/308844ebc226fc33164c1954c6c63e8ee12767f4.png",
+            "mobile_image": "shopify://shop_images/banner_img_6.png",
+            "heading": "ESSENCE",
+            "text": "Tubler Range",
+            "content_position": "bottom-center",
+            "text_align": "center",
+            "content_x": 8,
+            "content_y": 30,
+            "heading_color": "#ffffff",
+            "heading_size_desktop": 95,
+            "heading_size_mobile": 50,
+            "text_color": "#ffffff",
+            "text_size_desktop": 20,
+            "text_size_mobile": 20,
+            "button_label": "Explore Range",
+            "button_style": "outline",
+            "button_radius": 6,
+            "button_blur": 10,
+            "button_link": "shopify://collections/aqua",
+            "button_bg": "#ffffff",
+            "button_text": "#ffffff",
+            "button_bg_hover": "#ed0404",
+            "button_text_hover": "#000000"
+          }
+        }
+      },
+      "block_order": [
+        "slide_VxP6Gc",
+        "slide_KwTFCw",
+        "slide_33R9Wm",
+        "slide_pTjDe3",
+        "slide_RU3BhA",
+        "slide_dzrmDT"
+      ],
+      "settings": {}
+    }
+  },
+  "order": [
+    "reels-section-prima"
+  ]
+}

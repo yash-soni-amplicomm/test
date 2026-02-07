@@ -1,0 +1,335 @@
+{%- doc -%}
+  Intended for use in a block similar to the text block.
+
+  @param {string} [class] - custom class to define in addition to text-block classes
+  @param {string} [fallback_text] - fallback text if settings.text does not exist
+  @param {object} [block] - The block object
+  @param {string} [width] - width of the text block
+{%- enddoc -%}
+
+{% liquid
+  assign block_settings = block.settings
+  assign plain_text = block_settings.text | strip_newlines | strip_html | strip
+  assign text_width = width | default: block_settings.width
+
+  if block_settings.font_size contains 'heading-lg' or block_settings.font_size contains 'heading-xl'
+    assign type = 'display'
+  elsif block_settings.font_size contains 'heading'
+    assign type = 'heading'
+  else
+    assign type = 'body'
+  endif
+  if block_settings.type_preset == 'rte' or block_settings.type_preset == 'paragraph'
+    assign is_rte = true
+  endif
+
+  capture text_block_classes
+    if text_width == '100%'
+      echo 'text-block--align-' | append: block_settings.alignment
+      if block_settings.max_width == 'none'
+        echo ' text-block--full-width '
+      endif
+    endif
+    if block_settings.type_preset == 'custom'
+      echo ' custom-typography '
+      if block_settings.font_size != ''
+        echo ' custom-font-size '
+      endif
+      if block_settings.color != ''
+        echo ' custom-color '
+      endif
+    endif
+    if block_settings.background
+      echo ' text-block--background '
+    endif
+    if is_rte
+      echo ' rte '
+    endif
+  endcapture
+%}
+
+{% capture attributes %}
+  class="{{ class }} spacing-style text-block text-block--{{ block.id }} {{ block_settings.type_preset }}
+    {{ text_block_classes }}
+  "
+
+  style="
+    {% render 'spacing-padding', settings: block_settings %}
+    {% render 'typography-style', settings: block_settings %}
+    --width: {{ text_width }};
+    --max-width: var(--max-width--{{ type }}-{{ block_settings.max_width }});
+    {% if text_width == "100%" %}
+      --text-align: {{ block_settings.alignment }};
+    {% endif %}
+    {% if block_settings.background %}
+      --text-background-color: {{ block_settings.background_color | default: 'rgb(255 255 255 / 1.0)' }};
+      --text-corner-radius: {{ block_settings.corner_radius }}px;
+      --text-padding: max(var(--padding-2xs), calc((var(--text-corner-radius) + var(--padding-xs)) * (1 - cos(45deg))));
+    {% endif %}
+  "
+
+  {{ block.shopify_attributes }}
+{% endcapture %}
+
+{% liquid
+  # {{ attributes }} must be on the immediate HTML parent of the text to preserve
+  # the click-to-edit connection in the theme editor. Any break between the text,
+  # including if-statements, will break the connection.
+
+  assign element = 'div'
+  if is_rte
+    assign element = 'rte-formatter'
+  endif
+%}
+
+{% if prodCardTitle %}
+  <div class="text-block-with-share custom-prod-title-wrapper" style="max-width:80%" >
+    {% if fallback_text != blank and plain_text == blank %}
+      <div {{ attributes | strip_newlines | strip }}  >
+        {{ fallback_text }}
+      </div>
+    {% elsif plain_text != blank %}
+      <{{ element }} {{ attributes | strip_newlines | strip }}>
+        {{ block.settings.text }}
+        
+      </{{ element }}>
+    {% endif %}
+
+
+    {%- comment -%}Hanuma  Share button on PDP only -%}{% endcomment %}
+    {%- if product and block.settings.show_share_icon_on_pdp -%}
+      <button
+        type="button"
+        aria-label="Share"
+        class="pdp-share-button"
+        onclick="
+          window.open(
+            'https://wa.me/?text={{ product.title | url_encode }} {{ shop.url | append: product.url }}',
+            'shareWindow',
+            'width=700,height=500,left=' + ((screen.width - 700)/2) + ',top=' + ((screen.height - 500)/2)
+          );
+        "
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+          <mask id="mask0_355_15632" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+            <rect width="20" height="20" fill="#757575"/>
+          </mask>
+          <g mask="url(#mask0_355_15632)">
+            <path d="M13.3335 18.3331C12.6391 18.3331 12.0488 18.0901 11.5627 17.6039C11.0766 17.1178 10.8335 16.5276 10.8335 15.8331C10.8335 15.7498 10.8543 15.5553 10.896 15.2498L5.04183 11.8331C4.81961 12.0414 4.56266 12.2046 4.271 12.3227C3.97933 12.4407 3.66683 12.4998 3.3335 12.4998C2.63905 12.4998 2.04877 12.2567 1.56266 11.7706C1.07655 11.2845 0.833496 10.6942 0.833496 9.99978C0.833496 9.30533 1.07655 8.71505 1.56266 8.22894C2.04877 7.74283 2.63905 7.49978 3.3335 7.49978C3.66683 7.49978 3.97933 7.5588 4.271 7.67686C4.56266 7.79492 4.81961 7.95811 5.04183 8.16644L10.896 4.74978C10.8682 4.65255 10.8509 4.5588 10.8439 4.46853C10.837 4.37825 10.8335 4.27755 10.8335 4.16644C10.8335 3.472 11.0766 2.88172 11.5627 2.39561C12.0488 1.9095 12.6391 1.66644 13.3335 1.66644C14.0279 1.66644 14.6182 1.9095 15.1043 2.39561C15.5904 2.88172 15.8335 3.472 15.8335 4.16644C15.8335 4.86089 15.5904 5.45117 15.1043 5.93728C14.6182 6.42339 14.0279 6.66644 13.3335 6.66644C13.0002 6.66644 12.6877 6.60742 12.396 6.48936C12.1043 6.3713 11.8474 6.20811 11.6252 5.99978L5.771 9.41644C5.79877 9.51367 5.81614 9.60742 5.82308 9.69769C5.83002 9.78797 5.8335 9.88867 5.8335 9.99978C5.8335 10.1109 5.83002 10.2116 5.82308 10.3019C5.81614 10.3921 5.79877 10.4859 5.771 10.5831L11.6252 13.9998C11.8474 13.7914 12.1043 13.6282 12.396 13.5102C12.6877 13.3921 13.0002 13.3331 13.3335 13.3331C14.0279 13.3331 14.6182 13.5762 15.1043 14.0623C15.5904 14.5484 15.8335 15.1387 15.8335 15.8331C15.8335 16.5276 15.5904 17.1178 15.1043 17.6039C14.6182 18.0901 14.0279 18.3331 13.3335 18.3331ZM13.3335 16.6664C13.5696 16.6664 13.7675 16.5866 13.9272 16.4269C14.087 16.2671 14.1668 16.0692 14.1668 15.8331C14.1668 15.597 14.087 15.3991 13.9272 15.2394C13.7675 15.0796 13.5696 14.9998 13.3335 14.9998C13.0974 14.9998 12.8995 15.0796 12.7397 15.2394C12.58 15.3991 12.5002 15.597 12.5002 15.8331C12.5002 16.0692 12.58 16.2671 12.7397 16.4269C12.8995 16.5866 13.0974 16.6664 13.3335 16.6664ZM3.3335 10.8331C3.56961 10.8331 3.76752 10.7532 3.92725 10.5935C4.08697 10.4338 4.16683 10.2359 4.16683 9.99978C4.16683 9.76367 4.08697 9.56575 3.92725 9.40603C3.76752 9.2463 3.56961 9.16644 3.3335 9.16644C3.09739 9.16644 2.89947 9.2463 2.73975 9.40603C2.58002 9.56575 2.50016 9.76367 2.50016 9.99978C2.50016 10.2359 2.58002 10.4338 2.73975 10.5935C2.89947 10.7532 3.09739 10.8331 3.3335 10.8331ZM13.3335 4.99978C13.5696 4.99978 13.7675 4.91992 13.9272 4.76019C14.087 4.60047 14.1668 4.40255 14.1668 4.16644C14.1668 3.93033 14.087 3.73242 13.9272 3.57269C13.7675 3.41297 13.5696 3.33311 13.3335 3.33311C13.0974 3.33311 12.8995 3.41297 12.7397 3.57269C12.58 3.73242 12.5002 3.93033 12.5002 4.16644C12.5002 4.40255 12.58 4.60047 12.7397 4.76019C12.8995 4.91992 13.0974 4.99978 13.3335 4.99978Z" fill="#757575"/>
+          </g>
+        </svg>
+      </button>
+    {%- endif -%}
+  </div>
+
+
+{% else %}
+<div class="text-block-with-share">
+  {% if fallback_text != blank and plain_text == blank %}
+    <div {{ attributes | strip_newlines | strip }}>
+      {{ fallback_text }}
+  </div>
+  {% elsif plain_text != blank %}
+    <{{ element }} {{ attributes | strip_newlines | strip }}>
+      {{ block.settings.text }}
+      
+    </{{ element }}>
+  {% endif %}
+
+
+  {%- comment -%}Hanuma  Share button on PDP only -%}{% endcomment %}
+  {%- if product and block.settings.show_share_icon_on_pdp -%}
+    <button
+      type="button"
+      aria-label="Share"
+      class="pdp-share-button"
+      onclick="
+        window.open(
+          'https://wa.me/?text={{ product.title | url_encode }} {{ shop.url | append: product.url }}',
+          'shareWindow',
+          'width=700,height=500,left=' + ((screen.width - 700)/2) + ',top=' + ((screen.height - 500)/2)
+        );
+      "
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
+        <mask id="mask0_355_15632" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="0" width="20" height="20">
+          <rect width="20" height="20" fill="#757575"/>
+        </mask>
+        <g mask="url(#mask0_355_15632)">
+          <path d="M13.3335 18.3331C12.6391 18.3331 12.0488 18.0901 11.5627 17.6039C11.0766 17.1178 10.8335 16.5276 10.8335 15.8331C10.8335 15.7498 10.8543 15.5553 10.896 15.2498L5.04183 11.8331C4.81961 12.0414 4.56266 12.2046 4.271 12.3227C3.97933 12.4407 3.66683 12.4998 3.3335 12.4998C2.63905 12.4998 2.04877 12.2567 1.56266 11.7706C1.07655 11.2845 0.833496 10.6942 0.833496 9.99978C0.833496 9.30533 1.07655 8.71505 1.56266 8.22894C2.04877 7.74283 2.63905 7.49978 3.3335 7.49978C3.66683 7.49978 3.97933 7.5588 4.271 7.67686C4.56266 7.79492 4.81961 7.95811 5.04183 8.16644L10.896 4.74978C10.8682 4.65255 10.8509 4.5588 10.8439 4.46853C10.837 4.37825 10.8335 4.27755 10.8335 4.16644C10.8335 3.472 11.0766 2.88172 11.5627 2.39561C12.0488 1.9095 12.6391 1.66644 13.3335 1.66644C14.0279 1.66644 14.6182 1.9095 15.1043 2.39561C15.5904 2.88172 15.8335 3.472 15.8335 4.16644C15.8335 4.86089 15.5904 5.45117 15.1043 5.93728C14.6182 6.42339 14.0279 6.66644 13.3335 6.66644C13.0002 6.66644 12.6877 6.60742 12.396 6.48936C12.1043 6.3713 11.8474 6.20811 11.6252 5.99978L5.771 9.41644C5.79877 9.51367 5.81614 9.60742 5.82308 9.69769C5.83002 9.78797 5.8335 9.88867 5.8335 9.99978C5.8335 10.1109 5.83002 10.2116 5.82308 10.3019C5.81614 10.3921 5.79877 10.4859 5.771 10.5831L11.6252 13.9998C11.8474 13.7914 12.1043 13.6282 12.396 13.5102C12.6877 13.3921 13.0002 13.3331 13.3335 13.3331C14.0279 13.3331 14.6182 13.5762 15.1043 14.0623C15.5904 14.5484 15.8335 15.1387 15.8335 15.8331C15.8335 16.5276 15.5904 17.1178 15.1043 17.6039C14.6182 18.0901 14.0279 18.3331 13.3335 18.3331ZM13.3335 16.6664C13.5696 16.6664 13.7675 16.5866 13.9272 16.4269C14.087 16.2671 14.1668 16.0692 14.1668 15.8331C14.1668 15.597 14.087 15.3991 13.9272 15.2394C13.7675 15.0796 13.5696 14.9998 13.3335 14.9998C13.0974 14.9998 12.8995 15.0796 12.7397 15.2394C12.58 15.3991 12.5002 15.597 12.5002 15.8331C12.5002 16.0692 12.58 16.2671 12.7397 16.4269C12.8995 16.5866 13.0974 16.6664 13.3335 16.6664ZM3.3335 10.8331C3.56961 10.8331 3.76752 10.7532 3.92725 10.5935C4.08697 10.4338 4.16683 10.2359 4.16683 9.99978C4.16683 9.76367 4.08697 9.56575 3.92725 9.40603C3.76752 9.2463 3.56961 9.16644 3.3335 9.16644C3.09739 9.16644 2.89947 9.2463 2.73975 9.40603C2.58002 9.56575 2.50016 9.76367 2.50016 9.99978C2.50016 10.2359 2.58002 10.4338 2.73975 10.5935C2.89947 10.7532 3.09739 10.8331 3.3335 10.8331ZM13.3335 4.99978C13.5696 4.99978 13.7675 4.91992 13.9272 4.76019C14.087 4.60047 14.1668 4.40255 14.1668 4.16644C14.1668 3.93033 14.087 3.73242 13.9272 3.57269C13.7675 3.41297 13.5696 3.33311 13.3335 3.33311C13.0974 3.33311 12.8995 3.41297 12.7397 3.57269C12.58 3.73242 12.5002 3.93033 12.5002 4.16644C12.5002 4.40255 12.58 4.60047 12.7397 4.76019C12.8995 4.91992 13.0974 4.99978 13.3335 4.99978Z" fill="#757575"/>
+        </g>
+      </svg>
+    </button>
+  {%- endif -%}
+</div>
+{% endif %}
+
+<style>
+.swym-wishlist-collections-v2-container{
+  top:2px !important
+}
+.custom-prod-title-wrapper>div>p{
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.swym-wishlist-collections-v2{
+  height:32px !important;
+  width:32px !important;
+}
+
+.text-block-with-share {
+  display: flex;
+  align-items: center;
+  {% comment %} justify-content: space-between;
+  align-items: flex-start;
+  align-self: stretch; {% endcomment %}
+  {% comment %} gap: 0.5rem; /* space between text and button */ {% endcomment %}
+}
+
+.pdp-share-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem;
+  {% comment %} border-radius: 9999px; {% endcomment %}
+   border:none;
+  background-color: var(--color-bg-secondary);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.pdp-share-button:hover {
+  background-color: var(--color-bg-hover);
+}
+
+.pdp-share-button svg {
+  fill: var(--color-foreground);
+}
+</style>
+
+{% stylesheet %}
+  :root {
+    --text-align-default: left;
+  }
+
+  [style*='--horizontal-alignment: center'] .text-block {
+    --text-align-default: center;
+  }
+
+  [style*='--horizontal-alignment: flex-end'] .text-block {
+    --text-align-default: right;
+  }
+
+  [style*='--horizontal-alignment: flex-start'] > .text-block {
+    --text-align-default: left;
+  }
+
+  [style*='--horizontal-alignment: center'] > .text-block {
+    --text-align-default: center;
+  }
+
+  [style*='--horizontal-alignment: flex-end'] > .text-block {
+    --text-align-default: right;
+  }
+
+  .text-block {
+    width: var(--width);
+    max-width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: var(--horizontal-alignment);
+  }
+
+  .text-block > * {
+    width: var(--width);
+    max-inline-size: min(100%, var(--max-width, 100%));
+    text-align: var(--text-align, var(--text-align-default));
+    text-wrap: var(--text-wrap);
+  }
+
+  .text-block:not(.text-block--full-width).rte,
+  .text-block:not(.text-block--full-width).paragraph {
+    /* Safari doesn't support pretty, so fallback to balance */
+    text-wrap: balance;
+    text-wrap: pretty;
+  }
+
+  .text-block:not(.text-block--full-width):is(.h1, .h2, .h3, .h4, .h5, .h6) {
+    text-wrap: balance;
+  }
+
+  /* Hide underline unless text is using paragraph styles. */
+  .text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) a {
+    text-decoration-color: transparent;
+  }
+
+  .text-block h1,
+  .text-block.h1 > * {
+    margin-block: var(--font-h1--spacing);
+  }
+
+  .text-block h2,
+  .text-block.h2 > * {
+    margin-block: var(--font-h2--spacing);
+  }
+
+  .text-block h3,
+  .text-block.h3 > * {
+    margin-block: var(--font-h3--spacing);
+  }
+
+  .text-block h4,
+  .text-block.h4 > * {
+    margin-block: var(--font-h4--spacing);
+  }
+
+  .text-block h5,
+  .text-block.h5 > * {
+    margin-block: var(--font-h5--spacing);
+  }
+
+  .text-block h6,
+  .text-block.h6 > * {
+    margin-block: var(--font-h6--spacing);
+  }
+
+  .text-block p,
+  .text-block.p > * {
+    margin-block: var(--font-paragraph--spacing);
+  }
+
+  .text-block > *:first-child {
+    margin-block-start: 0;
+  }
+
+  .text-block > *:last-child {
+    margin-block-end: 0;
+  }
+
+  .text-block--align-center,
+  .text-block--align-center > * {
+    margin-inline: auto;
+  }
+
+  .text-block--align-right,
+  .text-block--align-right > * {
+    margin-inline-start: auto;
+  }
+
+  .text-block--background {
+    background-color: var(--text-background-color);
+    border-radius: var(--text-corner-radius);
+
+    /* To avoid text being cropped when using a border radius we add a minimum padding. */
+    padding-block-start: max(var(--text-padding), var(--padding-block-start, 0));
+    padding-block-end: max(var(--text-padding), var(--padding-block-end, 0));
+    padding-inline-start: max(var(--text-padding), var(--padding-inline-start, 0));
+    padding-inline-end: max(var(--text-padding), var(--padding-inline-end, 0));
+  }
+
+  .custom-color,
+  .custom-color > :is(h1, h2, h3, h4, h5, h6, p, *) {
+    color: var(--color);
+  }
+{% endstylesheet %}

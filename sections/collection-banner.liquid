@@ -1,0 +1,32 @@
+
+ 
+{% if collection.metafields.custom.collection_banner
+   or collection.metafields.custom.collection_banner_mobile %}
+
+<picture class="collection-banner">
+
+  {% if collection.metafields.custom.collection_banner_mobile %}
+    <source 
+      media="(max-width: 767px)" 
+      srcset="{{ collection.metafields.custom.collection_banner_mobile | img_url: 'master' }}">
+  {% endif %}
+
+  {% if collection.metafields.custom.collection_banner %}
+    <img 
+      src="{{ collection.metafields.custom.collection_banner | img_url: 'master' }}" 
+      alt="{{ collection.title }} Banner"
+      loading="lazy">
+  {% endif %}
+
+</picture>
+
+{% endif %}
+
+
+  
+{% schema %}
+  {
+    "name": "Collection Banner",
+    "settings": []
+  }
+{% endschema %}

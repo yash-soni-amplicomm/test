@@ -1,0 +1,466 @@
+{% doc %}
+ iocn with text slider in  mobile in desktop, no need of autoplay no need od icons, i mean prev next icons not required icon with text  in mobile auto play mobile
+{% enddoc %}
+{% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+
+{% style %}
+  .ai-icon-text-slider-{{ ai_gen_id }} {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    padding: {{ block.settings.padding_vertical }}px 0;
+    background-color: {{ block.settings.background_color }};
+  }
+
+  .ai-icon-text-slider__container-{{ ai_gen_id }} {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .ai-icon-text-slider__track-{{ ai_gen_id }} {
+    display: flex;
+    gap: {{ block.settings.gap }}px;
+    transition: transform 0.5s ease;
+  }
+
+  .ai-icon-text-slider__item-{{ ai_gen_id }} {
+    flex: 0 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+  }
+
+  .ai-icon-text-slider__icon-{{ ai_gen_id }} {
+    width: {{ block.settings.icon_size }}px;
+    height: {{ block.settings.icon_size }}px;
+    flex-shrink: 0;
+  }
+
+  .ai-icon-text-slider__icon-{{ ai_gen_id }} img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .ai-icon-text-slider__icon-placeholder-{{ ai_gen_id }} {
+    width: 100%;
+    height: 100%;
+    background-color: #f4f4f4;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .ai-icon-text-slider__icon-placeholder-{{ ai_gen_id }} svg {
+    width: 60%;
+    height: 60%;
+    opacity: 0.3;
+  }
+
+  .ai-icon-text-slider__text-{{ ai_gen_id }} {
+    color: {{ block.settings.text_color }};
+    font-size: {{ block.settings.text_size }}px;
+    line-height: 1.4;
+    font-weight: {{ block.settings.text_weight }};
+  }
+
+  @media screen and (min-width: 750px) {
+    .ai-icon-text-slider__track-{{ ai_gen_id }} {
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .ai-icon-text-slider__item-{{ ai_gen_id }} {
+      width: calc((100% - ({{ block.settings.desktop_columns | minus: 1 }} * {{ block.settings.gap }}px)) / {{ block.settings.desktop_columns }});
+    }
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-icon-text-slider__item-{{ ai_gen_id }} {
+      width: calc((100% - ({{ block.settings.mobile_columns | minus: 1 }} * {{ block.settings.gap }}px)) / {{ block.settings.mobile_columns }});
+    }
+  }
+{% endstyle %}
+
+<icon-text-slider-{{ ai_gen_id }}
+  class="ai-icon-text-slider-{{ ai_gen_id }}"
+  data-mobile-columns="{{ block.settings.mobile_columns }}"
+  data-desktop-columns="{{ block.settings.desktop_columns }}"
+  data-autoplay-speed="{{ block.settings.autoplay_speed }}"
+  {{ block.shopify_attributes }}
+>
+  <div class="ai-icon-text-slider__container-{{ ai_gen_id }}">
+    <div class="ai-icon-text-slider__track-{{ ai_gen_id }}">
+      {% for i in (1..6) %}
+        {% liquid
+          assign icon_key = 'icon_' | append: i
+          assign text_key = 'text_' | append: i
+          assign icon = block.settings[icon_key]
+          assign text = block.settings[text_key]
+        %}
+        
+        {% if text != blank %}
+          <div class="ai-icon-text-slider__item-{{ ai_gen_id }}">
+            <div class="ai-icon-text-slider__icon-{{ ai_gen_id }}">
+              {% if icon != blank %}
+                <img
+                  src="{{ icon | image_url: width: 200 }}"
+                  alt="{{ text | escape }}"
+                  loading="lazy"
+                  width="200"
+                  height="200"
+                >
+              {% else %}
+                <div class="ai-icon-text-slider__icon-placeholder-{{ ai_gen_id }}">
+                  {{ 'image' | placeholder_svg_tag }}
+                </div>
+              {% endif %}
+            </div>
+            <div class="ai-icon-text-slider__text-{{ ai_gen_id }}">{{ text }}</div>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</icon-text-slider-{{ ai_gen_id }}>
+
+<script>
+  (function() {
+    class IconTextSlider{{ ai_gen_id }} extends HTMLElement {
+      constructor() {
+        super();
+        this.currentIndex = 0;
+        this.isMobile = window.innerWidth < 750;
+        this.autoplayInterval = null;
+      }
+
+      connectedCallback() {
+        this.track = this.querySelector('.ai-icon-text-slider__track-{{ ai_gen_id }}');
+        this.items = this.querySelectorAll('.ai-icon-text-slider__item-{{ ai_gen_id }}');
+        this.mobileColumns = parseInt(this.dataset.mobileColumns);
+        this.desktopColumns = parseInt(this.dataset.desktopColumns);
+        this.autoplaySpeed = parseInt(this.dataset.autoplaySpeed);
+
+        this.updateSlider();
+        this.startAutoplay();
+
+        window.addEventListener('resize', () => {
+          const wasMobile = this.isMobile;
+          this.isMobile = window.innerWidth < 750;
+          if (wasMobile !== this.isMobile) {
+            this.currentIndex = 0;
+            this.updateSlider();
+            this.stopAutoplay();
+            this.startAutoplay();
+          }
+        });
+
+        let startX = 0;
+        let currentX = 0;
+
+        this.track.addEventListener('touchstart', (e) => {
+          if (!this.isMobile) return;
+          startX = e.touches[0].clientX;
+          this.stopAutoplay();
+        });
+
+        this.track.addEventListener('touchmove', (e) => {
+          if (!this.isMobile) return;
+          currentX = e.touches[0].clientX;
+        });
+
+        this.track.addEventListener('touchend', () => {
+          if (!this.isMobile) return;
+          const diff = startX - currentX;
+          if (Math.abs(diff) > 50) {
+            if (diff > 0) {
+              this.next();
+            } else {
+              this.prev();
+            }
+          }
+          this.startAutoplay();
+        });
+      }
+
+      disconnectedCallback() {
+        this.stopAutoplay();
+      }
+
+      startAutoplay() {
+        if (!this.isMobile || this.items.length <= this.mobileColumns) return;
+        
+        this.stopAutoplay();
+        this.autoplayInterval = setInterval(() => {
+          this.next();
+        }, this.autoplaySpeed);
+      }
+
+      stopAutoplay() {
+        if (this.autoplayInterval) {
+          clearInterval(this.autoplayInterval);
+          this.autoplayInterval = null;
+        }
+      }
+
+      prev() {
+        if (!this.isMobile) return;
+        const columns = this.mobileColumns;
+        if (this.currentIndex > 0) {
+          this.currentIndex -= columns;
+          if (this.currentIndex < 0) this.currentIndex = 0;
+        } else {
+          this.currentIndex = this.items.length - columns;
+        }
+        this.updateSlider();
+      }
+
+      next() {
+        if (!this.isMobile) return;
+        const columns = this.mobileColumns;
+        const maxIndex = this.items.length - columns;
+        if (this.currentIndex < maxIndex) {
+          this.currentIndex += columns;
+          if (this.currentIndex > maxIndex) this.currentIndex = maxIndex;
+        } else {
+          this.currentIndex = 0;
+        }
+        this.updateSlider();
+      }
+
+      updateSlider() {
+        if (!this.isMobile) {
+          this.track.style.transform = 'translateX(0)';
+          return;
+        }
+
+        const itemWidth = this.items[0].offsetWidth;
+        const gap = parseInt(getComputedStyle(this.track).gap);
+        const offset = this.currentIndex * (itemWidth + gap);
+        
+        this.track.style.transform = `translateX(-${offset}px)`;
+      }
+    }
+
+    customElements.define('icon-text-slider-{{ ai_gen_id }}', IconTextSlider{{ ai_gen_id }});
+  })();
+</script>
+
+{% schema %}
+{
+  "name": "Icon with text slider",
+  "tag": null,
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "range",
+      "id": "desktop_columns",
+      "label": "Desktop columns",
+      "min": 2,
+      "max": 6,
+      "step": 1,
+      "default": 4
+    },
+    {
+      "type": "select",
+      "id": "mobile_columns",
+      "label": "Mobile columns",
+      "options": [
+        { "value": "1", "label": "1" },
+        { "value": "2", "label": "2" }
+      ],
+      "default": "2"
+    },
+    {
+      "type": "range",
+      "id": "gap",
+      "label": "Gap between items",
+      "min": 10,
+      "max": 60,
+      "step": 5,
+      "unit": "px",
+      "default": 30
+    },
+    {
+      "type": "range",
+      "id": "padding_vertical",
+      "label": "Vertical padding",
+      "min": 0,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 40
+    },
+    {
+      "type": "header",
+      "content": "Autoplay"
+    },
+    {
+      "type": "range",
+      "id": "autoplay_speed",
+      "label": "Autoplay speed (mobile only)",
+      "min": 2000,
+      "max": 8000,
+      "step": 500,
+      "unit": "ms",
+      "default": 3000
+    },
+    {
+      "type": "header",
+      "content": "Icon style"
+    },
+    {
+      "type": "range",
+      "id": "icon_size",
+      "label": "Icon size",
+      "min": 30,
+      "max": 100,
+      "step": 5,
+      "unit": "px",
+      "default": 50
+    },
+    {
+      "type": "header",
+      "content": "Text style"
+    },
+    {
+      "type": "range",
+      "id": "text_size",
+      "label": "Text size",
+      "min": 12,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "text_weight",
+      "label": "Text weight",
+      "min": 400,
+      "max": 700,
+      "step": 100,
+      "default": 400
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000000"
+    },
+    {
+      "type": "header",
+      "content": "Colors"
+    },
+    {
+      "type": "color",
+      "id": "background_color",
+      "label": "Background",
+      "default": "#ffffff"
+    },
+    {
+      "type": "header",
+      "content": "Item 1"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_1",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "text_1",
+      "label": "Text",
+      "default": "Free shipping"
+    },
+    {
+      "type": "header",
+      "content": "Item 2"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_2",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "text_2",
+      "label": "Text",
+      "default": "Easy returns"
+    },
+    {
+      "type": "header",
+      "content": "Item 3"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_3",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "text_3",
+      "label": "Text",
+      "default": "Secure checkout"
+    },
+    {
+      "type": "header",
+      "content": "Item 4"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_4",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "text_4",
+      "label": "Text",
+      "default": "24/7 support"
+    },
+    {
+      "type": "header",
+      "content": "Item 5"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_5",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "text_5",
+      "label": "Text",
+      "default": "Premium quality"
+    },
+    {
+      "type": "header",
+      "content": "Item 6"
+    },
+    {
+      "type": "image_picker",
+      "id": "icon_6",
+      "label": "Icon"
+    },
+    {
+      "type": "text",
+      "id": "text_6",
+      "label": "Text",
+      "default": "Gift wrapping"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Icon with text slider"
+    }
+  ]
+}
+{% endschema %}

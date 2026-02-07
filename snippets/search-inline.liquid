@@ -1,0 +1,77 @@
+<div
+  class="header-search-inline"
+  on:click="#search-modal/showDialog"
+  role="button"
+  tabindex="0"
+  aria-haspopup="dialog"
+>
+  <input
+    type="search"
+    placeholder="{{ 'content.search_input_placeholder' | t }}"
+    aria-label="{{ 'content.search_input_label' | t }}"
+    readonly
+  />
+  <span class="header-search-inline__icon">
+    {{ 'icon-search.svg' | inline_asset_content }}
+  </span>
+</div>
+
+{% stylesheet %}
+.header-search-inline {
+  position: relative;
+  display: none;
+  width: 260px !important;
+}
+
+@media(min-width:750px) and (max-width:995px){
+  .header-search-inline{
+    width:225px !important;
+  }
+}
+
+.header-search-inline {
+  cursor: text;
+}
+
+.header-search-inline input {
+  cursor: text;
+}
+
+.header-search-inline input {
+  width: 100%;
+  height: 40px;
+  padding: 0 44px 0 16px;
+  border: none;
+  outline: none;
+  background: rgba(209, 209, 209, 0.20);
+  backdrop-filter: blur(75px);
+  color: white;
+  font-size: 14px;
+}
+
+.header-search-inline input::placeholder {
+  color: rgb(255 255 255 / 0.65);
+}
+
+.header-search-inline__icon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+
+.header-search-inline__icon svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* Desktop only */
+@media (min-width: 750px) {
+  .header-search-inline {
+    display: block;
+  }
+}
+{% endstylesheet %}
